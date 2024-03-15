@@ -1,0 +1,81 @@
+﻿<Window x:Class="Login.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Login.View"
+        mc:Ignorable="d"
+        Title="Inicio de sesión" Height="550" Width="900"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="50">
+            <TextBlock Text="Carlos Morales de Chimbote" 
+                       x:Name="tbTitulo"  
+                       FontSize="35" 
+                       TextAlignment="Center" 
+                       FontWeight="Bold" 
+                       TextWrapping="Wrap"/>
+            <Image Source="/logo.jpg"
+                   Margin="30"
+                   Height="250" 
+                   Width="250"/>
+
+        </StackPanel>
+
+        <Border Margin="40" BorderBrush="#FF573482" BorderThickness="1" Grid.Column="1" CornerRadius="10">
+            <StackPanel>
+                <TextBlock x:Name="tbInicioSesion" 
+                           Margin="60 50 0 0"  Text="Inicio de Sesión" 
+                           FontSize="28"
+                           FontWeight="Bold" 
+                           Foreground="#FF573482"/>
+                
+                <TextBlock x:Name="tbCorreo" 
+                           Text="Correo electrónico:"  
+                           Margin="60 35 0 0"
+                           FontSize="14" 
+                           FontWeight="Bold" />
+                
+                <TextBox x:Name="txtCorreoElectronico"
+                         Margin ="60 20 60 0" 
+                         FontSize="16"
+                         Foreground="Black" 
+                         CaretBrush="LightGray" 
+                         BorderBrush="DarkGray"></TextBox>  
+                
+                <TextBlock x:Name="tbContraseña" 
+                           Text="Contraseña:"  
+                           Margin="60 25 0 0" 
+                           FontSize="14" 
+                           FontWeight="Bold"/>
+                <PasswordBox x:Name="txtContraseña" 
+                         Margin ="60 20 60 0" 
+                         FontSize="16" 
+                         Foreground="Black" 
+                         CaretBrush="LightGray" 
+                         BorderBrush="DarkGray"
+                             PasswordChar="*"></PasswordBox>
+
+                <Button x:Name="btnIniciarSesion" 
+                        Margin="60 50 60 0" 
+                        Padding="8" 
+                        Background="#FF573482" 
+                        Foreground="White" 
+                        Panel.ZIndex="0" 
+                        Content="Iniciar Sesión"/>
+
+            </StackPanel>
+        </Border>
+        
+
+
+
+    </Grid>
+</Window>
