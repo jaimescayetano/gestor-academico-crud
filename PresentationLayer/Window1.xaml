@@ -1,0 +1,28 @@
+﻿<Window x:Class="PresentationLayer.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="Window1" Height="400" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="lbTitle" Content="Administradores" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name="lbDescripcion" Content="Esta es la vista del ejemplo de obtencion de datos que se encuentra en DataLayer/Connection/getAdministrators(). Suerte." Grid.Row="1"/>
+        <DataGrid x:Name="tbDatos" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Usuario" Binding="{Binding Usuario}" />
+                <DataGridTextColumn Header="Gmail" Binding="{Binding Gmail}" />
+                <DataGridTextColumn Header="Contraseña" Binding="{Binding Contraseña}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

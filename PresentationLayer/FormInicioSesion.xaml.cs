@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LogicLayer;
+using PresentationLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,13 @@ namespace Login.View
             InitializeComponent();
         }
 
+        // button that activates validation 
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e) { }
+
+        private void btShowExample_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 exampleWindow = new Window1();
+            exampleWindow.Show();
+        }
     }
 }

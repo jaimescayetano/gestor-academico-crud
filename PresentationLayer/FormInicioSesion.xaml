@@ -69,7 +69,8 @@
                         Background="#FF573482" 
                         Foreground="White" 
                         Panel.ZIndex="0" 
-                        Content="Iniciar Sesión"/>
+                        Content="Iniciar Sesión" Click="btnIniciarSesion_Click"/>
+                <Button x:Name="btShowExample" Content="Abrir ejemplo" Click="btShowExample_Click"/>
 
             </StackPanel>
         </Border>
