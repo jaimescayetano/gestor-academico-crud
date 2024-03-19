@@ -11,7 +11,7 @@ namespace DataLayer
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
+        private string hostname = "Data Source=DESKTOP-KKA5IBN\\SQLEXPRESS;Initial Catalog=colegio; User Id=sa; Password=1234";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
@@ -52,6 +52,16 @@ namespace DataLayer
         }
 
         // validate user password
-        public void validateUser() { }
+        public bool ValidateUser(string gmail, string contraseña)
+        {
+            SqlCommand query = new SqlCommand("SELECT COUNT(*) FROM administradores WHERE gmail = @Email AND contraseña = @Password", this.connection);
+            query.Parameters.AddWithValue("@Email", gmail);
+            query.Parameters.AddWithValue("@Password", contraseña);
+
+            int count = (int)query.ExecuteScalar();
+
+            // Si count es mayor que 0, significa que se encontró una coincidencia
+            return count > 0;
+        }
     }
 }

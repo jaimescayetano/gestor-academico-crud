@@ -22,5 +22,11 @@ namespace LogicLayer
             //
             return this.connection.getAdministrators();
         }
+        public bool ValidateUserCredentials(string gmail, string contraseña)
+        {
+            return connection.ValidateUser(gmail, contraseña);
+        }
+
+
     }
 }
