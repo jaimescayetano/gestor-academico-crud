@@ -36,22 +36,25 @@ namespace Login.View
             string gmail = txtCorreoElectronico.Text;
             string contraseña = txtContraseña.Password;
 
-            if (adminModel.ValidateUserCredentials(gmail, contraseña))
+            if (gmail.Length > 0 && contraseña.Length > 0) 
             {
-
-                this.Hide();
-                txtCorreoElectronico.Clear();
-                txtContraseña.Clear();
-                Form1 form = new Form1();
-                form.ShowDialog();
-                
-
-
-
-            }
-            else
+                if (adminModel.ValidateUserCredentials(gmail, contraseña))
+                {
+                    this.Hide();
+                    txtCorreoElectronico.Clear();
+                    txtContraseña.Clear();
+                    Form1 form = new Form1();
+                    form.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Datos ingresados son invalidos", "Validación de datos");
+                    txtCorreoElectronico.Clear();
+                    txtContraseña.Clear();
+                }
+            } else
             {
-                MessageBox.Show("Datos invalidos");
+                MessageBox.Show("Ingresar los datos solicitados", "Validación de datos");
                 txtCorreoElectronico.Clear();
                 txtContraseña.Clear();
             }

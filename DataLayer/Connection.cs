@@ -11,7 +11,7 @@ namespace DataLayer
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-KKA5IBN\\SQLEXPRESS;Initial Catalog=colegio; User Id=sa; Password=1234";
+        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
