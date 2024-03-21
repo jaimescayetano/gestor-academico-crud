@@ -1,0 +1,27 @@
+﻿<Window x:Class="PresentationLayer.FormLevels"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="FormLevels" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Margin="50 50 50 0">Niveles</TextBlock>
+            <DataGrid x:Name="tbDatos" Margin="50">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Nivel Academico" Binding="{Binding Nivel_Academico}" />
+                    <DataGridTextColumn Header="Seccion" Binding="{Binding Seccion}" />
+                    <DataGridTextColumn Header="Grado" Binding="{Binding Grado}" />
+                    <DataGridTextColumn Header="Tutor" Binding="{Binding Tutor}" />
+                    <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" />
+                    <DataGridTextColumn Header="Aula ID" Binding="{Binding Aula_ID}" />
+                    <DataGridTextColumn Header="Numero" Binding="{Binding Numero}" />
+                    <DataGridTextColumn Header="Capacidad" Binding="{Binding Capacidad}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
