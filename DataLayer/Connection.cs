@@ -10,7 +10,7 @@ namespace DataLayer
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-JOPHT0L\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
+        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
@@ -51,7 +51,6 @@ namespace DataLayer
         }
 
         // validate user password
-<<<<<<< HEAD
         public bool ValidateUser(string gmail, string contraseña)
         {
             SqlCommand query = new SqlCommand("SELECT COUNT(*) FROM administradores WHERE gmail = @Email AND contraseña = @Password", this.connection);
@@ -63,8 +62,6 @@ namespace DataLayer
             // Si count es mayor que 0, significa que se encontró una coincidencia
             return count > 0;
         }
-=======
-        public void validateUser() { }
 
         public List<List<string>> getLevels()
         {
@@ -89,8 +86,6 @@ namespace DataLayer
             return levels;
         }
 
-
-
         // Ingresar estudiantes
         public void insertStudent(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
@@ -103,8 +98,6 @@ namespace DataLayer
                                               "@telefono, @celular, @direccion, @gmail, @fechaNacimiento, @observaciones, @nivelId)", this.connection);
 
             // Agregar los parámetros al comando para evitar SQL Injection
-
-
             query.Parameters.AddWithValue("@primerNombre", primerNombre);
             query.Parameters.AddWithValue("@segundoNombre", segundoNombre);
             query.Parameters.AddWithValue("@primerApellido", primerApellido);
@@ -117,19 +110,14 @@ namespace DataLayer
             query.Parameters.AddWithValue("@observaciones", observaciones);
             query.Parameters.AddWithValue("@nivelId", nivelId);
 
-
-
             // Ejecutar el comando
             int result = query.ExecuteNonQuery();
 
             // Cerrar la conexión
             this.connection.Close();
-
         }
 
-
         // Obtener a loes estudiantes
-
         public List<List<string>> getStudents()
         {
             List<List<string>> levels = new List<List<string>>();
@@ -155,7 +143,5 @@ namespace DataLayer
             data.Close();
             return levels;
         }
-
->>>>>>> 62d951b08a097df5fb15425c9cbccb866f50b286
     }
 }
