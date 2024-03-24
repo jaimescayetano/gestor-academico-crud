@@ -1,17 +1,16 @@
-﻿<Window x:Class="PresentationLayer.FormListaEstudiante"
+﻿<Page x:Class="PresentationLayer.FormListaEstudiante"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="FormListaEstudiante" Height="700" Width="1100">
+        Title="FormListaEstudiante">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="90*"></RowDefinition>
-            <RowDefinition Height="90"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -20,38 +19,29 @@
                 <ColumnDefinition Width="85*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" 
-Margin="20,20,15,10" 
-Source="/logo.jpg" 
-Width="100" 
-Height="100" 
-Panel.ZIndex="1"
-VerticalAlignment="Center"
- HorizontalAlignment="Center"/>
-
-            <TextBlock Grid.Column="1"
-Text="LISTA DE ESTUDIANTES"
-FontSize="35"
-VerticalAlignment="Center"
-HorizontalAlignment="Center"
-FontWeight="Bold" 
-Foreground="#FF573482"/>
+            <TextBlock Grid.Column="0"
+                       Text="LISTA DE ESTUDIANTES"
+                       FontSize="35"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       FontWeight="Bold" Grid.ColumnSpan="2" Margin="260,32,0,0" />
         </Grid>
 
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
                 <ColumnDefinition Width="30*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" x:Name="btnEditarEstudiante" 
-             Margin="5"
-             Background="#67488e" 
-             Foreground="White" 
-             Content="Editar Estudiante" Click="btnEditarEstudiante_Click"/>
+            <Button Grid.Column="1" x:Name="btnEditarEstudiante"
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Editar Estudiante" Click="btnEditarEstudiante_Click"/>
 
             <Button Grid.Column="2" x:Name="btnEliminarEstudiante" 
              Margin="5"
@@ -59,11 +49,16 @@ Foreground="#FF573482"/>
              Foreground="White" 
              Content="Eliminar Estudiante" Click="btnEliminarEstudiant_Click"/>
 
+            <Button Grid.Column="3" x:Name="btnNuevoEstudiante" 
+                    Margin="5" 
+                    Background="#FF573482" 
+                    Foreground="White" 
+                    Content="Nuevo Estudiante" Click="btnNuevoEstudiante_Click"/>
         </Grid>
 
 
         <StackPanel Grid.Row="2">
-            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300">
+            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="350">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Primer Nombre" Binding="{Binding Primer_Nombre}"/>
@@ -80,16 +75,5 @@ Foreground="#FF573482"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-
-        <Grid Grid.Row="3">
-
-            <Button x:Name="btnNuevoEstudiante" 
-             Margin="250 20" 
-             Padding="8" 
-             Background="#FF573482" 
-             Foreground="White" 
-             Content="Nuevo Estudiante" Click="btnNuevoEstudiante_Click"/>
-        </Grid>
-
     </Grid>
-</Window>
+</Page>

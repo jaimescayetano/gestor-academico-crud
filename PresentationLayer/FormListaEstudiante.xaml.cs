@@ -18,7 +18,7 @@ namespace PresentationLayer
     /// <summary>
     /// Lógica de interacción para FormListaEstudiante.xaml
     /// </summary>
-    public partial class FormListaEstudiante : Window
+    public partial class FormListaEstudiante : Page
     {
         public FormListaEstudiante()
         {
@@ -50,7 +50,7 @@ namespace PresentationLayer
         {
             FormNuevoEstudiante nuevoEstudiante = new FormNuevoEstudiante();
             nuevoEstudiante.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void btnEditarEstudiante_Click(object sender, RoutedEventArgs e)

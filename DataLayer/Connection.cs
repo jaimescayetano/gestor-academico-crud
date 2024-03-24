@@ -36,20 +36,6 @@ namespace DataLayer
             this.connection.Close();
         }
 
-        // example of select with administrators table
-        public List<List<string>> getAdministrators()
-        {
-            List<List<string>> admins = new List<List<string>>();
-            SqlCommand query = new SqlCommand("SELECT * FROM administradores", this.connection);
-            SqlDataReader data = query.ExecuteReader();
-            while (data.Read())
-            {
-                admins.Add(new List<string>() { data["id"].ToString(), data["usuario"].ToString(), data["gmail"].ToString(), data["contraseña"].ToString() });
-            }
-            data.Close();
-            return admins;
-        }
-
         // validate user password
         public bool ValidateUser(string gmail, string contraseña)
         {
