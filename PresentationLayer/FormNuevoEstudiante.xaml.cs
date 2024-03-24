@@ -73,5 +73,12 @@ namespace PresentationLayer
 
             
         }
+
+        private void btnIRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            FormListaEstudiante formListaEstudiante = new FormListaEstudiante();
+            formListaEstudiante.Show();
+            this.Close();
+        }
     }
 }

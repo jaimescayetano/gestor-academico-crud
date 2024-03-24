@@ -126,5 +126,16 @@ Foreground="#FF573482"/>
                  Foreground="White" 
                  Content="Registrar estudiante" Click="btnIRegistrarEstudiante_Click"/>
         </Grid>
+
+        <Grid Grid.Row="1" Margin="50,409,-50,45" Grid.RowSpan="2">
+
+            <Button x:Name="btnIRegresarEstudiante" 
+         Margin="828,17,34,26" 
+         Padding="8" 
+         Background="#FF573482" 
+         Foreground="White" 
+         Content="Regresar" Click="btnIRegresar_Click"/>
+        </Grid>
+
     </Grid>
 </Window>

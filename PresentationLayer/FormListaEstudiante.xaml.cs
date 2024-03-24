@@ -20,13 +20,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class FormListaEstudiante : Window
     {
+        //Declara la variable estudianteSeleccionado
+        private StudentModel studentModel;
+
+
         public FormListaEstudiante()
         {
             InitializeComponent();
-            StudentModel studentModel = new StudentModel();
+            studentModel = new StudentModel();
             foreach (var item in studentModel.getStudents())
             {
-                var row = new
+                var row = new 
                 {
                     Id = item[0],
                     Primer_Nombre = item[1],
@@ -42,6 +46,7 @@ namespace PresentationLayer
                     Id_Nivel = item[11]
                 };
 
+                // Suscribirse al evento SelectionChanged del DataGrid
                 dgEstudiantes.Items.Add(row);
             }
         }
@@ -51,19 +56,60 @@ namespace PresentationLayer
             FormNuevoEstudiante nuevoEstudiante = new FormNuevoEstudiante();
             nuevoEstudiante.Show();
             this.Hide();
-        }
+        }private void btnEditarEstudiante_Click(object sender, RoutedEventArgs e)
+            {
+            // Verificar si hay un estudiante seleccionado
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                // Obtener el estudiante seleccionado
+                var estudianteSeleccionado = dgEstudiantes.SelectedItem;
+                MessageBox.Show(estudianteSeleccionado.ToString());
 
-        private void btnEditarEstudiante_Click(object sender, RoutedEventArgs e)
-        {
-            //FormEditarEstudiante editarEstudiante = new FormEditarEstudiante();
-            //editarEstudiante.Show();
-            //this.Hide();
-        }
+                // Abrir el formulario de edición y pasar el estudiante seleccionado
+                //FormEditarEstudiante editarEstudiante = new FormEditarEstudiante(estudianteSeleccionado);
+                //editarEstudiante.ShowDialog();
 
+                // Actualizar la vista del DataGrid para reflejar los cambios
+                dgEstudiantes.Items.Refresh();
+            }
+        }
         private void btnEliminarEstudiant_Click(object sender, RoutedEventArgs e)
         {
-            //
+            // Verificar si hay un estudiante seleccionado en la tabla
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                // Obtener el ID del estudiante seleccionado
+                int estudianteId = ObtenerIdEstudianteSeleccionado();
+
+                // Llamar al método deleteStudent de la clase StudentModel para eliminar el estudiante de la base de datos
+                studentModel.deleteStudent(estudianteId);
+
+                // Eliminar el estudiante seleccionado de la tabla
+                dgEstudiantes.Items.Remove(dgEstudiantes.SelectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un estudiante para eliminar.");
+            }
+        }
+
+        private int ObtenerIdEstudianteSeleccionado()
+        {
+            // Obtener el ID del estudiante seleccionado en la tabla
+            int estudianteId = 0;
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                // Seleccionar la fila y obtener el ID desde la propiedad correspondiente
+                var selectedItem = (dynamic)dgEstudiantes.SelectedItem;
+                estudianteId = selectedItem.Id;
+            }
+            return estudianteId;
+        }
+
+        private void dgEstudiantes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
-    
+
 }

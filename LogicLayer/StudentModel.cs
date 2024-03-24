@@ -38,9 +38,22 @@ namespace LogicLayer
 
 
         // method to eliminate students
-        public void deleteStudent() { }
+        // Método para eliminar un estudiante
+        public void deleteStudent(int studentId)
+        {
+            // Llama al método deleteStudent de la instancia connection para eliminar al estudiante con el ID proporcionado
+           // this.connection.deleteStudent(studentId);
+        }
 
-        // method to update students
-        public void updateStudent() { }
+        // Método para actualizar los datos de un estudiante
+        public void updateStudent(int studentId, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
+                  string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
+                  string observaciones, int nivelId)
+        {
+            // Llama al método updateStudent de la instancia connection para actualizar los datos del estudiante con el ID proporcionado
+            //this.connection.updateStudent(studentId, primerNombre, segundoNombre, primerApellido, segundoApellido,
+                // telefono, celular, direccion, gmail, fechaNacimiento,
+                 //observaciones, nivelId);
+        }
     }
 }
