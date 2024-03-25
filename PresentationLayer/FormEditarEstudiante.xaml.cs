@@ -23,5 +23,15 @@ namespace PresentationLayer
         {
             InitializeComponent();
         }
+
+        private void btnGuardarCambios_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMostrarNiveles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace DataLayer
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
+        private string hostname = "Data Source=DESKTOP-JOPHT0L\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
@@ -113,8 +113,7 @@ namespace DataLayer
             // Ejecutar el comando
             int result = query.ExecuteNonQuery();
 
-            // Cerrar la conexión
-            this.connection.Close();
+            
         }
 
         // Obtener a loes estudiantes

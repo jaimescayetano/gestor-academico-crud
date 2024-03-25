@@ -23,6 +23,7 @@ namespace PresentationLayer
         public FormNuevoEstudiante()
         {
             InitializeComponent();
+            tbPrimerNombre.Focus();
         }
         private void btnMostrarNiveles_Click(object sender, RoutedEventArgs e)
         {
@@ -30,9 +31,9 @@ namespace PresentationLayer
             listLevel.Show();
         }
 
+
         private void btnIRegistrarEstudiante_Click(object sender, RoutedEventArgs e)
         {
-            // Recoger los valores de los controles del formulario
             string primerNombre = tbPrimerNombre.Text;
             string segundoNombre = tbSegundoNombre.Text;
             string apellidoPaterno = tbApellidoPaterno.Text;
@@ -53,18 +54,15 @@ namespace PresentationLayer
                 return;
             }
 
-
             StudentModel modeloEstudiante = new StudentModel();
 
-            // Llamar al método para insertar el estudiante, asegúrate de manejar cualquier posible excepción
             try
             {
                 modeloEstudiante.insertStudent(primerNombre, segundoNombre, apellidoPaterno, apellidoMaterno,
                                                 telefono, celular, direccion, email, fechaNacimiento,
                                                 observaciones, nivelId);
                 MessageBox.Show("Estudiante registrado con éxito.");
-
-
+                tbPrimerNombre.Focus();
             }
             catch (Exception ex)
             {
@@ -72,6 +70,13 @@ namespace PresentationLayer
             }
 
             
+        }
+
+        private void btnVolver_Click(object sender, RoutedEventArgs e)
+        {
+            FormListaEstudiante listStudent = new FormListaEstudiante();
+            listStudent.Show();
+            this.Close();
         }
     }
 }
