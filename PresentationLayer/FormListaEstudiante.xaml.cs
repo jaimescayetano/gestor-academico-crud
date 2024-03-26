@@ -39,7 +39,8 @@ namespace PresentationLayer
                     Gmail = item[8],
                     Fecha_Nacimiento = item[9],
                     Observaciones = item[10],
-                    Id_Nivel = item[11]
+                    nivel_academico = item[11],
+                    grado_seccion = item[12]
                 };
 
                 dgEstudiantes.Items.Add(row);
@@ -63,6 +64,11 @@ namespace PresentationLayer
         private void btnEliminarEstudiant_Click(object sender, RoutedEventArgs e)
         {
             //
+        }
+
+        private void dgEstudiantes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
     

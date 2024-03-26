@@ -10,7 +10,7 @@ namespace DataLayer
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
+        private string hostname = "Data Source=DESKTOP-KKA5IBN\\SQLEXPRESS;Initial Catalog=colegio;User ID=sa;Password=1234";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
@@ -107,7 +107,19 @@ namespace DataLayer
         public List<List<string>> getStudents()
         {
             List<List<string>> levels = new List<List<string>>();
-            SqlCommand query = new SqlCommand("SELECT * FROM estudiantes", this.connection);
+            SqlCommand query = new SqlCommand("SELECT " +
+                "e.id, " +
+                "e.primer_nombre, " +
+                "e.segundo_nombre, " +
+                "e.primer_apellido, " +
+                "e.segundo_apellido, " +
+                "e.telefono, e.celular, " +
+                "e.direccion, " +
+                "e.gmail, " +
+                "e.fecha_nacimiento, " +
+                "e.observaciones, " +
+                "CASE n.nivel_academico WHEN 'I' THEN 'Inicial' WHEN 'P' THEN 'Primaria' WHEN 'S' THEN 'Secundaria' END AS nivel_academico," +
+                " CONCAT(n.grado,' ', n.seccion) AS grado_seccion FROM estudiantes e JOIN niveles n ON e.nivel_id = n.id " , this.connection);
             SqlDataReader data = query.ExecuteReader();
             while (data.Read())
             {
@@ -124,8 +136,10 @@ namespace DataLayer
                     data["gmail"].ToString(),
                     data["fecha_nacimiento"].ToString(),
                     data["observaciones"].ToString(),
-                    data["nivel_id"].ToString()});
-            }
+                    data["nivel_academico"].ToString(),
+                    data["grado_seccion"].ToString()
+            });
+        }
             data.Close();
             return levels;
         }
