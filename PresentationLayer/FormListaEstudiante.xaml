@@ -56,13 +56,8 @@
                     Content="Nuevo Estudiante" Click="btnNuevoEstudiante_Click"/>
         </Grid>
 
-
         <StackPanel Grid.Row="2">
-<<<<<<< HEAD
-            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="350">
-=======
             <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300" SelectionChanged="dgEstudiantes_SelectionChanged">
->>>>>>> bf679d648663cc64831cc48b789aead3d4453bdb
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Primer Nombre" Binding="{Binding Primer_Nombre}"/>
