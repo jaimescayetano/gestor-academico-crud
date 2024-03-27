@@ -23,6 +23,13 @@ namespace PresentationLayer
         public FormListaEstudiante()
         {
             InitializeComponent();
+            StudentList();
+            
+        }
+
+        public void StudentList()
+        {
+            dgEstudiantes.Items.Clear();
             StudentModel studentModel = new StudentModel();
             foreach (var item in studentModel.getStudents())
             {
@@ -51,8 +58,9 @@ namespace PresentationLayer
         {
             FormNuevoEstudiante nuevoEstudiante = new FormNuevoEstudiante();
             nuevoEstudiante.Show();
-            //this.Hide();
         }
+
+       
 
         private void btnEditarEstudiante_Click(object sender, RoutedEventArgs e)
         {

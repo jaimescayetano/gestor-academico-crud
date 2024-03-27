@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
-        mc:Ignorable="d"
-        Title="FormNuevoEstudiante" Height="700" Width="950">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="FormNuevoEstudiante" MinHeight="700" MinWidth="950">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
@@ -20,21 +20,21 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" 
-Margin="20,20,15,10" 
-Source="/logo.jpg" 
-Width="100" 
-Height="100" 
-Panel.ZIndex="1"
-VerticalAlignment="Center"
- HorizontalAlignment="Center"/>
+                Margin="20,20,15,10" 
+                Source="/logo.jpg" 
+                Width="100" 
+                Height="100" 
+                Panel.ZIndex="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="1"
-Text="NUEVO ESTUDIANTE"
-FontSize="35"
-VerticalAlignment="Center"
-HorizontalAlignment="Center"
-FontWeight="Bold" 
-Foreground="#FF573482"/>
+                Text="NUEVO ESTUDIANTE"
+                FontSize="35"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontWeight="Bold" 
+                Foreground="#FF573482"/>
         </Grid>
 
 
@@ -54,73 +54,121 @@ Foreground="#FF573482"/>
 
             <StackPanel Grid.Column="0" Grid.Row="0" Margin="10 5">
                 <TextBlock Text="Primer Nombre:"></TextBlock>
-                <TextBox x:Name="tbPrimerNombre" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbPrimerNombre" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="0" Margin="10 5">
                 <TextBlock Text="Segundo Nombre:"></TextBlock>
-                <TextBox x:Name="tbSegundoNombre" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbSegundoNombre" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="10 5">
                 <TextBlock Text="Apellido Paterno:"></TextBlock>
-                <TextBox x:Name="tbApellidoPaterno" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbApellidoPaterno" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="10 5">
                 <TextBlock Text="Apellido Materno:"></TextBlock>
-                <TextBox x:Name="tbApellidoMaterno" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbApellidoMaterno" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="2" Margin="10 5">
                 <TextBlock Text="Telefono:"></TextBlock>
-                <TextBox x:Name="tbTelefono" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbTelefono" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" Margin="10 5">
                 <TextBlock Text="Celular:"></TextBlock>
-                <TextBox x:Name="tbCelular" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbCelular" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="2" Margin="10 5">
                 <TextBlock Text="Email:"></TextBlock>
-                <TextBox x:Name="tbEmail" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbEmail" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="3" Margin="10 5">
-                <TextBlock Text="Fecha de Nacimiento"></TextBlock>
-                <DatePicker x:Name="dpNacimiento" Height="23" Width="248"/>
+                <TextBlock Text="Fecha de Nacimiento" ></TextBlock>
+                <DatePicker x:Name="dpNacimiento" Margin="0 2" Padding="5"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="3" Margin="10 5">
                 <TextBlock Text="Direccion:"></TextBlock>
-                <TextBox x:Name="tbDireccion" Margin="0 10"></TextBox>
+                <TextBox x:Name="tbDireccion" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
-            <StackPanel Grid.Column="0" Grid.Row="4" Margin="10 5">
-                <TextBlock Text="Observaciones:"></TextBlock>
-                <TextBox x:Name="tbObservaciones" Margin="0 10" Padding="10" ></TextBox>
-            </StackPanel>
+            <Grid Grid.Column="0" Grid.Row="4" Margin="10 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Observaciones:" Grid.Row="0"/>
+                <TextBox x:Name="tbObservaciones" 
+                         Margin="0 8" Padding="5" 
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Disabled"
+                         Grid.Row="1"/>
+            </Grid>
 
-            <StackPanel Grid.Column="1" Grid.Row="4" Margin="10 5">
-                <TextBlock Text="Nivel Academico (ID):"></TextBlock>
-                <TextBox x:Name="tbIdNivel" Margin="80 5" Padding="5" ></TextBox>
-                <Button  x:Name="btnMostrarNiveles"
-         Margin="80 1" 
-                 Padding="1" 
-                 Background="#FF573482" 
-                 Foreground="White" 
-                 Content="Mostras Niveles" Click="btnMostrarNiveles_Click"/>
+            <Grid Grid.Column="1" Grid.Row="4" Margin="10 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            </StackPanel>
+                <TextBlock Text="Nivel Academico (ID):" Grid.Row="0"/>
+
+                <Grid Grid.Row="1" Margin="0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="tbIdNivel" 
+                             Margin="0 5" 
+                             Padding="5"
+                             VerticalAlignment="Center"
+                             Grid.Column="0" />
+
+                    <Button x:Name="btnMostrarNiveles"
+                            Margin="10 5" 
+                            Padding="1"
+                            MaxHeight="30"
+                            MaxWidth="250"
+                            
+                            Background="#67488e" 
+                            Foreground="White" 
+                            Content="Mostrar Niveles" 
+                            Click="btnMostrarNiveles_Click"
+                            Grid.Column="1"/>
+                </Grid>
+            </Grid>
 
         </Grid>
 
 
         <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="70*"></ColumnDefinition>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnVolver" 
+                  Grid.Column="0"
+                  Margin="30 20" 
+                  MaxWidth="500"
+                  Padding="8" 
+                  Background="#FF573482" 
+                  Foreground="White" 
+                  Content="Volver" Click="btnVolver_Click" />
+
 
             <Button x:Name="btnIRegistrarEstudiante" 
-                 Margin="250 20" 
+                 Grid.Column="1"
+                 Margin="80 20" 
+                 MaxWidth="500"
                  Padding="8" 
                  Background="#FF573482" 
                  Foreground="White" 
