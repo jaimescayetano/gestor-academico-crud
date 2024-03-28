@@ -23,6 +23,11 @@ namespace PresentationLayer
         public FormLevels()
         {
             InitializeComponent();
+            ShowList();
+        }
+
+        public void ShowList()
+        {
             LevelModel levelModel = new LevelModel();
             foreach (var item in levelModel.getLevels())
             {
@@ -42,5 +47,61 @@ namespace PresentationLayer
                 tbDatos.Items.Add(row);
             }
         }
+
+        private void btnNuevoNivel_Click(object sender, RoutedEventArgs e)
+        {
+            FormNewLevel level = new FormNewLevel();
+            level.ShowDialog();
+            this.Close();
+        }
+
+        private void btnEditarNivel_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbDatos.SelectedItem != null)
+            {
+                var selectedRow = (dynamic)tbDatos.SelectedItem;
+                int selectedLevelId = int.Parse(selectedRow.Id);
+
+                FormEditLevel editLevelForm = new FormEditLevel(selectedLevelId);
+                editLevelForm.ShowDialog();
+
+                ShowList();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un nivel");
+            }
+
+            this.Close();
+        }
+
+        private void btnEliminarNivel_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbDatos.SelectedItem != null)
+            {
+                var selectedRow = (dynamic)tbDatos.SelectedItem;
+                int selectedLevelId = int.Parse(selectedRow.Id);
+
+                var result = MessageBox.Show("¿Está seguro de que desea eliminar el nivel seleccionado?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    LevelModel levelModel = new LevelModel();
+                    levelModel.deleteLevel(selectedLevelId);
+
+                    MessageBox.Show("Nivel eliminado con éxito.", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                    tbDatos.Items.Clear();
+                    ShowList(); 
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un nivel para eliminar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+       
+
     }
 }

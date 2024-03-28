@@ -26,14 +26,28 @@ namespace LogicLayer
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
                           string observaciones, string nivelId)
         {
-
             this.connection.insertStudent(primerNombre, segundoNombre, primerApellido, segundoApellido,
                                           telefono, celular, direccion, gmail, fechaNacimiento,
                                           observaciones, nivelId);
         }
 
-        public void deleteStudent() { }
+        public void updateStudent(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
+                          string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
+                          string observaciones, int nivelId)
+        {
+            this.connection.updateStudent(id, primerNombre, segundoNombre, primerApellido, segundoApellido,
+                                          telefono, celular, direccion, gmail, fechaNacimiento,
+                                          observaciones, nivelId);
+        }
 
-        public void updateStudent() { }
+        public List<string> getStudentById(int studentId)
+        {
+            return this.connection.getStudentById(studentId);
+        }
+
+        public void deleteStudent(int id)
+        {
+            this.connection.deleteStudent(id);
+        }
     }
 }

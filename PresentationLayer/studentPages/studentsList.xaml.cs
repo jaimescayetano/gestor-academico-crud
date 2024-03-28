@@ -40,9 +40,9 @@ namespace PresentationLayer.studentPages
             dgEstudiantes.Items.Clear();
             foreach (var student in students)
             {
-                var row = new
+                StudentItem row = new StudentItem
                 {
-                    id = student[0],
+                    id = int.Parse(student[0]),
                     primerNombre = student[1],
                     segundoNombre = student[2],
                     primerApellido = student[3],
@@ -62,12 +62,42 @@ namespace PresentationLayer.studentPages
 
         private void editStudent(object sender, RoutedEventArgs e)
         {
-            
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                var selectedRow = (dynamic)dgEstudiantes.SelectedItem;
+                int selectedLevelId = int.Parse(selectedRow.Id);
+
+                FormEditarEstudiante editStudentForm = new FormEditarEstudiante(selectedLevelId);
+                editStudentForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un estudiante");
+            }
         }
 
         private void removeStudent(object sender, RoutedEventArgs e)
         {
+            if (dgEstudiantes.SelectedItems != null)
+            {
+                var result = MessageBox.Show("¿Está seguro de que desea eliminar a los estudiantes seleccionados?", 
+                    "Confirmar eliminación", 
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    foreach (StudentItem item in dgEstudiantes.SelectedItems)
+                    {
+                        studentModel.deleteStudent(item.id);
+                    }
+                    MessageBox.Show("La operación se realizó con éxito.", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Information);
+                    renderStudents(loadStudents());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un estudiante para eliminar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void addStudent(object sender, RoutedEventArgs e)
@@ -75,5 +105,22 @@ namespace PresentationLayer.studentPages
             addStudent addStudent = new addStudent(this);
             addStudent.ShowDialog();
         }
+    }
+
+    public class StudentItem
+    {
+        public int id { get; set; }
+        public string primerNombre { get; set; }
+        public string segundoNombre { get; set; }
+        public string primerApellido { get; set; }
+        public string segundoApellido { get; set; }
+        public string telefono { get; set; }
+        public string celular { get; set; }
+        public string direccion { get; set; }
+        public string gmail { get; set; }
+        public string observaciones { get; set; }
+        public string fechaNacimiento { get; set; }
+        public string nivelAcademico { get; set; }
+        public string gradoSeccion { get; set; }
     }
 }

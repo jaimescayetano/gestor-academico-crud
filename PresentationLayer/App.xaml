@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:PresentationLayer"
              StartupUri="Login.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

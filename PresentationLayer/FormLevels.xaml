@@ -5,11 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="FormLevels" Height="450" Width="800">
+        Title="FormListaEstudiante" Height="700" Width="1100">
     <Grid>
-        <StackPanel>
-            <TextBlock Margin="50 50 50 0">Niveles</TextBlock>
-            <DataGrid x:Name="tbDatos" Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="90*"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="85*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" 
+                Margin="20,20,15,10" 
+                Source="/logo.jpg" 
+                Width="100" 
+                Height="100" 
+                Panel.ZIndex="1"
+                VerticalAlignment="Center"
+                 HorizontalAlignment="Center"/>
+
+            <TextBlock Grid.Column="1"
+                Text="LISTA DE NIVELES"
+                FontSize="35"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontWeight="Bold" 
+                Foreground="#FF573482"/>
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" x:Name="btnEditarEstudiante" 
+             Margin="5,5,5,0"
+             Background="#67488e" 
+             Foreground="White" 
+             Content="Editar Nivel" Click="btnEditarNivel_Click" Height="35" VerticalAlignment="Top"/>
+
+            <Button Grid.Column="2" x:Name="btnEliminarNivel" 
+             Margin="5"
+             Background="#67488e" 
+             Foreground="White" 
+             Content="Eliminar Nivel" Click="btnEliminarNivel_Click"/>
+
+        </Grid>
+
+
+        <StackPanel Grid.Row="2">
+            <DataGrid Grid.Row="1" x:Name="tbDatos" AutoGenerateColumns="False" Margin="85 10 85 0" Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
                     <DataGridTextColumn Header="Nivel Academico" Binding="{Binding Nivel_Academico}" />
@@ -23,5 +79,17 @@
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
+
+        <Grid Grid.Row="3">
+
+            <Button x:Name="btnNuevoNivel" 
+             Margin="300 20" 
+             MaxWidth="500"
+             Padding="8" 
+             Background="#FF573482" 
+             Foreground="White" 
+             Content="Nuevo Nivel" Click="btnNuevoNivel_Click"/>
+        </Grid>
+
     </Grid>
 </Window>
