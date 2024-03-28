@@ -38,5 +38,11 @@ namespace PresentationLayer
             Login login = new Login();
             login.Show();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            frame.Source = null;
+            frame.Source = new Uri("levelPages/levelsList.xaml", UriKind.Relative);
+        }
     }
 }

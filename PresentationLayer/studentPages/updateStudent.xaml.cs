@@ -75,20 +75,12 @@ namespace PresentationLayer.studentPages
                 try
                 {
                     DateTime fechaNacimiento = dpNacimiento.SelectedDate.HasValue ? dpNacimiento.SelectedDate.Value : DateTime.Now;
+                    string nivelId = cbNiveles.SelectedValue == null ? "" : cbNiveles.SelectedValue.ToString();
                     
-                    if (cbNiveles.SelectedValue == null)
-                    {
-                        studentList.studentModel.updateStudent(studentId, tbPrimerNombre.Text, tbSegundoNombre.Text, tbApellidoPaterno.Text,
-                        tbApellidoMaterno.Text, tbTelefono.Text, tbCelular.Text, tbDireccion.Text, tbEmail.Text, fechaNacimiento,
-                        tbObservaciones.Text);
-                    } else
-                    {
-                        string nivelId = cbNiveles.SelectedValue.ToString();
-                        studentList.studentModel.updateStudent(studentId, tbPrimerNombre.Text, tbSegundoNombre.Text, tbApellidoPaterno.Text,
+                    studentList.studentModel.updateStudent(studentId, tbPrimerNombre.Text, tbSegundoNombre.Text, tbApellidoPaterno.Text,
                         tbApellidoMaterno.Text, tbTelefono.Text, tbCelular.Text, tbDireccion.Text, tbEmail.Text, fechaNacimiento,
                         tbObservaciones.Text, nivelId);
-                    }
-                    
+
                     MessageBox.Show("Estudiante actualizado con éxito.");
                     studentList.renderStudents(studentList.loadStudents());
                 }

@@ -21,12 +21,12 @@
                 <ColumnDefinition Width="85*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0"
+            <TextBlock Grid.Column="1"
                    Text="LISTA DE ESTUDIANTES"
                    FontSize="35"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
-                   FontWeight="Bold" Grid.ColumnSpan="2" Margin="260,32,0,0" />
+                   FontWeight="Bold" Margin="87,32,0,0" />
         </Grid>
 
         <Grid Grid.Row="1">

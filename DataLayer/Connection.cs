@@ -60,6 +60,19 @@ namespace DataLayer
             return levesOptions;
         }
 
+        public List<Dictionary<string, string>> getClassroomsOptions()
+        {
+            List<Dictionary<string, string>> classroomsOptions = new List<Dictionary<string, string>>();
+            SqlCommand query = new SqlCommand("SELECT id, numero FROM aulas;", this.connection);
+            SqlDataReader data = query.ExecuteReader();
+            while (data.Read())
+            {
+                classroomsOptions.Add(new Dictionary<string, string>() { { data["id"].ToString(), data["numero"].ToString() } });
+            }
+            data.Close();
+            return classroomsOptions;
+        }
+
         // validate user password
         public bool ValidateUser(string gmail, string contraseña)
         {
@@ -148,23 +161,32 @@ namespace DataLayer
 
         // Actualizar Niveles
         public void updateLevel(int id, char nivelAcademico, string seccion, int grado, string tutor,
-                        string observaciones, int aulaId)
+                        string observaciones, string aulaId)
         {
-            SqlCommand query = new SqlCommand("UPDATE niveles SET nivel_academico = @nivelAcademico, " +
-                                              "seccion = @seccion, grado = @grado, tutor = @tutor, " +
-                                              "observaciones = @observaciones, aula_id = @aulaId " +
-                                              "WHERE id = @id", this.connection);
+            string stringQuery = "UPDATE niveles SET nivel_academico = @nivelAcademico, " +
+                                    "seccion = @seccion, grado = @grado, tutor = @tutor, " +
+                                    "observaciones = @observaciones";
 
+            if (aulaId.Count() > 0)
+            {
+                stringQuery += ", aula_id = @aulaId ";
+            }
+
+            stringQuery += " WHERE id = @id";
+
+            SqlCommand query = new SqlCommand(stringQuery, this.connection);
             query.Parameters.AddWithValue("@id", id);
             query.Parameters.AddWithValue("@nivelAcademico", nivelAcademico);
             query.Parameters.AddWithValue("@seccion", seccion);
             query.Parameters.AddWithValue("@grado", grado);
             query.Parameters.AddWithValue("@tutor", tutor);
             query.Parameters.AddWithValue("@observaciones", observaciones);
-            query.Parameters.AddWithValue("@aulaId", aulaId);
 
+            if (aulaId.Count() > 0)
+            {
+                query.Parameters.AddWithValue("@aulaId", aulaId);
+            }
             int result = query.ExecuteNonQuery();
-
         }
 
         // Borrar Nivel

@@ -33,7 +33,7 @@ namespace LogicLayer
             this.connection.insertLevel(nivelAcademico, seccion, grado, tutor,observaciones, aulaId);
         }
 
-        public void updateLevel(int id, char nivelAcademico, string seccion, int grado, string tutor, string observaciones, int aulaId)
+        public void updateLevel(int id, char nivelAcademico, string seccion, int grado, string tutor, string observaciones, string aulaId)
         {
             this.connection.updateLevel(id, nivelAcademico, seccion, grado, tutor, observaciones, aulaId);
         }

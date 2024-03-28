@@ -1,4 +1,5 @@
 ﻿using LogicLayer;
+using PresentationLayer.studentPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +14,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PresentationLayer
+namespace PresentationLayer.levelPages
 {
     /// <summary>
-    /// Lógica de interacción para FormEditLevel.xaml
+    /// Lógica de interacción para updateStudent.xaml
     /// </summary>
-    public partial class FormEditLevel : Window
+    public partial class updateLevel : Window
     {
-
         private int levelId;
+        levelsList levelsList;
 
-        public FormEditLevel(int id)
+        public updateLevel(int levelId, levelsList window)
         {
             InitializeComponent();
-            levelId = id;
-            LoadLevelData();
+            this.levelId = levelId;
+            levelsList = window;
+            loadLevelData();
+            loadClassroomsOptions();
         }
 
-        private void LoadLevelData()
+        public void loadClassroomsOptions()
         {
-            LevelModel levelModel = new LevelModel();
-            var data = levelModel.getLevelById(levelId);
+            ClassroomModel classroomModel = new ClassroomModel();
+            cbClassrooms.ItemsSource = classroomModel.getClassroomsOptions();
+        }
 
+        private void loadLevelData()
+        {
+            var data = levelsList.levelModel.getLevelById(levelId);
             if (data != null)
             {
-                    tbNivelAcademico.Text = data[1];
-                    tbSeccion.Text = data[2];
-                    tbGrado.Text = data[3];
-                    tbTutor.Text = data[4]; 
-                    tbObservaciones.Text = data[5]; 
-                    tbAulaId.Text = data[6];
+                tbNivelAcademico.Text = data[1];
+                tbSeccion.Text = data[2];
+                tbGrado.Text = data[3];
+                tbTutor.Text = data[4];
+                tbObservaciones.Text = data[5];
             }
             else
             {
@@ -50,7 +56,12 @@ namespace PresentationLayer
             }
         }
 
-        private void btnGuardarCambios_Click(object sender, RoutedEventArgs e)
+        private void returnWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveChanges(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -59,13 +70,12 @@ namespace PresentationLayer
                 int grado = int.Parse(tbGrado.Text);
                 string tutor = tbTutor.Text;
                 string observaciones = tbObservaciones.Text;
-                int aulaId = int.Parse(tbAulaId.Text);
 
-                LevelModel levelModel = new LevelModel();
-                levelModel.updateLevel(levelId, nivelAcademico, seccion, grado, tutor, observaciones, "");
+                string classroomId = cbClassrooms.SelectedValue == null ? "" : cbClassrooms.SelectedValue.ToString();
+                levelsList.levelModel.updateLevel(levelId, nivelAcademico, seccion, grado, tutor, observaciones, classroomId);
 
                 MessageBox.Show("Nivel actualizado con éxito.");
-
+                levelsList.renderLeves(levelsList.loadLevels());
             }
             catch (FormatException)
             {
@@ -76,24 +86,5 @@ namespace PresentationLayer
                 MessageBox.Show($"Se produjo un error al actualizar el nivel: {ex.Message}");
             }
         }
-
-        private void btnMostrarAulas_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnVolver_Click(object sender, RoutedEventArgs e)
-        {
-            FormLevels listStudent = new FormLevels();
-            listStudent.Show();
-            this.Close();
-        }
-
-
-
-
-        //
-
-
     }
 }
