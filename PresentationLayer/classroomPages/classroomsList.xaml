@@ -29,6 +29,7 @@
         <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="15*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -36,13 +37,18 @@
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
+            
             <StackPanel Grid.Column="0" Grid.Row="0" Margin="10 5">
-                <TextBlock Text="Capacidad:"></TextBlock>
-                <TextBox x:Name="tbCapcidad" Margin="0 5" Padding="5"></TextBox>
+                <TextBlock Text="Número:"></TextBlock>
+                <TextBox x:Name="tbNumero" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
-            <Grid Grid.Column="0" Grid.Row="1" Margin="10,5,10,38">
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="10 5">
+                <TextBlock Text="Capacidad:"></TextBlock>
+                <TextBox x:Name="tbCapacidad" Margin="0 5" Padding="5"></TextBox>
+            </StackPanel>
+
+            <Grid Grid.Column="0" Grid.Row="2" Margin="10,5,10,38">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -56,7 +62,7 @@
              Grid.Row="1"/>
             </Grid>
 
-            <Grid Grid.Column="0" Grid.Row="2" Margin="10 5">
+            <Grid Grid.Column="0" Grid.Row="3" Margin="10 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -85,10 +91,11 @@
                         Content="Eliminar" Grid.Column="2" Click="removeClassroom" />
             </Grid>
 
-            <StackPanel Grid.Column="1" Grid.RowSpan="3">
+            <StackPanel Grid.Column="1" Grid.RowSpan="4">
                 <DataGrid Grid.Row="1" x:Name="dgAulas" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="1*" />
+                        <DataGridTextColumn Header="Número" Binding="{Binding numero}" Width="1*" />
                         <DataGridTextColumn Header="Capacidad" Binding="{Binding capacidad}" Width="2*"/>
                         <DataGridTextColumn Header="Observaciones" Binding="{Binding observaciones}" Width="4*"/>
                     </DataGrid.Columns>

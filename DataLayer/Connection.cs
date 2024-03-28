@@ -27,15 +27,59 @@ namespace DataLayer
 
         private Connection()
         {
-            // make connection
             connection.ConnectionString = hostname;
             connection.Open();
         }
 
         public void closeConnection()
         {
-            // close connection
             this.connection.Close();
+        }
+
+        public string insertClassroom(int numero, int capacidad, string observaciones) 
+        {
+            try
+            {
+                SqlCommand query = new SqlCommand("INSERT INTO aulas (numero, capacidad, observaciones) VALUES (@numero, @capacidad, @observaciones)", this.connection);
+                query.Parameters.AddWithValue("@numero", numero);
+                query.Parameters.AddWithValue("@capacidad", capacidad);
+                query.Parameters.AddWithValue("@observaciones", observaciones);
+                int result = query.ExecuteNonQuery();
+                if (result == 1)
+                {
+                    return "El aula fue registrada correctamente.";
+                } else
+                {
+                    return "No se pudo registrar el aula, intentelo nuevamente.";
+                }
+            }
+            catch (Exception e)
+            {
+                return $"Ocurrió un error inesperado: {e.Message}";
+            }        
+        }
+
+        public string updateClassroom(int id, List<string> classroom)
+        {
+            try
+            {
+                SqlCommand query = new SqlCommand("UPDATE aulas SET numero = @numero, capacidad = @capacidad, observaciones = @observaciones WHERE id = @id;", 
+                    this.connection);
+                query.Parameters.AddWithValue("@numero", classroom[0]);
+                query.Parameters.AddWithValue("@capacidad", classroom[1]);
+                query.Parameters.AddWithValue("@observaciones", classroom[2]);
+                query.Parameters.AddWithValue("@id", id);
+                int result = query.ExecuteNonQuery();
+                if (result == 1)
+                {
+                    return "El aula se actualizo correctamente.";
+                }
+                return "No se pudo actualizar el aula.";
+            }
+            catch (Exception e)
+            {
+                return $"Ocurrió un error inesperado: {e.Message}";
+            }
         }
 
         public List<Dictionary<string, string>> getLevesOptions()
@@ -138,7 +182,6 @@ namespace DataLayer
             }
         }
 
-        // Ingresar Niveles
         public void insertLevel(char nivelAcademico, string seccion, int grado, string tutor,
                           string observaciones, int aulaId)
         {
@@ -154,12 +197,9 @@ namespace DataLayer
             query.Parameters.AddWithValue("@observaciones", observaciones);
             query.Parameters.AddWithValue("@aulaId", aulaId);
 
-            // Ejecutar el comando
             int result = query.ExecuteNonQuery();
-
         }
 
-        // Actualizar Niveles
         public void updateLevel(int id, char nivelAcademico, string seccion, int grado, string tutor,
                         string observaciones, string aulaId)
         {
@@ -273,6 +313,7 @@ namespace DataLayer
             {
                 classrooms.Add(new List<string>() {
                     data["id"].ToString(),
+                    data["numero"].ToString(),
                     data["capacidad"].ToString(),
                     data["observaciones"].ToString()
                 });
@@ -293,6 +334,30 @@ namespace DataLayer
             catch (Exception e)
             {
                 return $"Ocurrió un error inesperado: {e.Message}";
+            }
+        }
+
+        public List<string> getClassroomById(int classroomId)
+        {
+            SqlCommand query = new SqlCommand("SELECT * FROM aulas WHERE id = @classroomId", this.connection);
+            query.Parameters.AddWithValue("@classroomId", classroomId);
+            SqlDataReader data = query.ExecuteReader();
+
+            if (data.Read())
+            {
+                List<string> classroom = new List<string>() {
+                    data["id"].ToString(),
+                    data["numero"].ToString(),
+                    data["capacidad"].ToString(),
+                    data["observaciones"].ToString()
+            };
+                data.Close();
+                return classroom;
+            }
+            else
+            {
+                data.Close();
+                return null;
             }
         }
 
@@ -330,7 +395,6 @@ namespace DataLayer
             }
         }
 
-        // Actualizar Estudiante
         public void updateStudent(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
                           string observaciones, string nivelId)
