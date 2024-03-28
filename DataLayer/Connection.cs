@@ -98,11 +98,9 @@ namespace DataLayer
 
             // Ejecutar el comando
             int result = query.ExecuteNonQuery();
-
-            
         }
 
-        // Obtener a loes estudiantes
+        // Obtener a los estudiantes
         public List<List<string>> getStudents()
         {
             List<List<string>> levels = new List<List<string>>();
@@ -141,6 +139,39 @@ namespace DataLayer
         }
             data.Close();
             return levels;
+        }
+
+        // obtaining available classrooms
+        public List<List<string>> getClassrooms()
+        {
+            List<List<string>> classrooms = new List<List<string>>();
+            SqlCommand query = new SqlCommand("SELECT * FROM aulas", this.connection);
+            SqlDataReader data = query.ExecuteReader();
+            while (data.Read())
+            {
+                classrooms.Add(new List<string>() {
+                    data["id"].ToString(),
+                    data["capacidad"].ToString(),
+                    data["observaciones"].ToString()
+                });
+            }
+            data.Close();
+            return classrooms;
+        }
+
+        public string deleteClassroom(int id)
+        {
+            try
+            {
+                SqlCommand query = new SqlCommand("DELETE FROM aulas WHERE id = @id", this.connection);
+                query.Parameters.AddWithValue("@id", id);
+                int rowsAffected = query.ExecuteNonQuery();
+                return rowsAffected > 0 ? "El aula se eliminó correctamente" : "No se eliminó el aula";
+            }
+            catch (Exception e)
+            {
+                return $"Ocurrió un error inesperado: {e.Message}";
+            }
         }
     }
 }
