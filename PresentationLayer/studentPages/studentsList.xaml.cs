@@ -64,11 +64,9 @@ namespace PresentationLayer.studentPages
         {
             if (dgEstudiantes.SelectedItem != null)
             {
-                var selectedRow = (dynamic)dgEstudiantes.SelectedItem;
-                int selectedLevelId = int.Parse(selectedRow.Id);
-
-                FormEditarEstudiante editStudentForm = new FormEditarEstudiante(selectedLevelId);
-                editStudentForm.ShowDialog();
+                StudentItem item = (StudentItem) dgEstudiantes.SelectedItem;
+                updateStudent updateStudent = new updateStudent(item.id, this);
+                updateStudent.ShowDialog();
             }
             else
             {

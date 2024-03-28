@@ -33,7 +33,7 @@ namespace LogicLayer
 
         public void updateStudent(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
-                          string observaciones, int nivelId)
+                          string observaciones, string nivelId = "")
         {
             this.connection.updateStudent(id, primerNombre, segundoNombre, primerApellido, segundoApellido,
                                           telefono, celular, direccion, gmail, fechaNacimiento,

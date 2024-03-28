@@ -282,13 +282,20 @@ namespace DataLayer
         // Actualizar Estudiante
         public void updateStudent(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
-                          string observaciones, int nivelId)
+                          string observaciones, string nivelId)
         {
-            SqlCommand query = new SqlCommand("UPDATE estudiantes SET primer_nombre = @primerNombre, " +
+            string stringQuery = "UPDATE estudiantes SET primer_nombre = @primerNombre, " +
                                               "segundo_nombre = @segundoNombre, primer_apellido = @primerApellido, segundo_apellido = @segundoApellido, " +
                                               "telefono = @telefono, celular = @celular, direccion = @direccion, gmail = @gmail, " +
-                                              "fecha_nacimiento = @fechaNacimiento, observaciones = @observaciones, nivel_id = @nivelId " + // Asegúrate de tener un espacio antes de WHERE
-                                              "WHERE id = @id", this.connection);
+                                              "fecha_nacimiento = @fechaNacimiento, observaciones = @observaciones";
+                                              
+            if (nivelId.Count() > 0)
+            {
+                stringQuery += ", nivel_id = @nivelId ";
+            }
+
+            stringQuery += " WHERE id = @id";
+            SqlCommand query = new SqlCommand(stringQuery, this.connection);
 
             query.Parameters.AddWithValue("@id", id);
             query.Parameters.AddWithValue("@primerNombre", primerNombre);
@@ -301,8 +308,10 @@ namespace DataLayer
             query.Parameters.AddWithValue("@gmail", gmail);
             query.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
             query.Parameters.AddWithValue("@observaciones", observaciones);
-            query.Parameters.AddWithValue("@nivelId", nivelId);
-
+            if (nivelId.Count() > 0)
+            {
+                query.Parameters.AddWithValue("@nivelId", nivelId);
+            }
             int result = query.ExecuteNonQuery();
         }
 
