@@ -85,6 +85,7 @@ namespace PresentationLayer.levelPages
             tbGrado.Text = "";
             tbSeccion.Text = "";
             tbTutor.Text = "";
+            tbObservaciones.Text = "";
         }
 
         public bool validateFields()
