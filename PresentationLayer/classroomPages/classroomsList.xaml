@@ -18,21 +18,12 @@
                 <ColumnDefinition Width="85*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" 
-                Margin="20,20,15,10" 
-                Source="/logo.jpg" 
-                Width="100" 
-                Height="100" 
-                Panel.ZIndex="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
-
             <TextBlock Grid.Column="1"
                 FontSize="35"
-                VerticalAlignment="Top"
+                VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 FontWeight="Bold" 
-                Foreground="#FF573482" Margin="224,52,0,0"><Run Language="es-es" Text="AULAS"/></TextBlock>
+                Foreground="#FF573482" Margin="224,0,0,0"><Run Language="es-es" Text="AULAS"/></TextBlock>
         </Grid>
 
         <Grid Grid.Row="1" Margin="20">
