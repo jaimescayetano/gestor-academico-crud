@@ -23,13 +23,13 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
-            frame.Source = new Uri("FormListaEstudiante.xaml", UriKind.Relative);
+            frame.Source = new Uri("studentPages/studentsList.xaml", UriKind.Relative);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             frame.Source = null;
-            frame.Source = new Uri("FormListaEstudiante.xaml", UriKind.Relative);
+            frame.Source = new Uri("studentPages/studentsList.xaml.xaml", UriKind.Relative);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

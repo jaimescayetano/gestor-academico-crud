@@ -24,5 +24,10 @@ namespace LogicLayer
             //
             return this.connection.getLevels();
         }
+
+        public List<Dictionary<string, string>> getLevesOptions()
+        {
+            return connection.getLevesOptions();
+        }
     }
 }

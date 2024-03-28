@@ -46,7 +46,7 @@ namespace PresentationLayer
             string observaciones = tbObservaciones.Text;
             int nivelId = 0;
 
-
+            /*
             bool conversionExitosa = int.TryParse(tbIdNivel.Text, out nivelId);
             if (!conversionExitosa)
             {
@@ -68,6 +68,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show($"Ocurrió un error al registrar el estudiante: {ex.Message}");
             }
+            */
 
             
         }

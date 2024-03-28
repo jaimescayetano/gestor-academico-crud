@@ -27,7 +27,7 @@ namespace LogicLayer
         // method to insert students
         public void insertStudent(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
-                          string observaciones, int nivelId)
+                          string observaciones, string nivelId)
         {
 
             // Llamar al método insertStudent de la instancia connection sin esperar un retorno.

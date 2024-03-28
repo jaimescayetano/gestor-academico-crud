@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using static System.Collections.Specialized.BitVector32;
+using System.Windows.Forms;
 
 namespace DataLayer
 {
@@ -34,6 +36,28 @@ namespace DataLayer
         {
             // close connection
             this.connection.Close();
+        }
+
+        public List<Dictionary<string, string>> getLevesOptions()
+        {
+            List<Dictionary<string, string>> levesOptions = new List<Dictionary<string, string>>();
+            SqlCommand query = new SqlCommand(@"SELECT id, 
+                                                CONCAT(grado, seccion,   
+                                                CASE 
+                                                    WHEN nivel_academico = 'P' THEN ' Primaria'
+                                                    WHEN nivel_academico = 'I' THEN ' Inicial'
+                                                    WHEN nivel_academico = 'S' THEN ' Secundaria'
+                                                    ELSE ' No encontrado' 
+                                                END) AS nivel_academico
+                                               FROM niveles;", this.connection);
+            SqlDataReader data = query.ExecuteReader();
+            while (data.Read())
+            {
+
+                levesOptions.Add(new Dictionary<string, string>() { { data["id"].ToString(), data["nivel_academico"].ToString() } });
+            }
+            data.Close();
+            return levesOptions;
         }
 
         // validate user password
@@ -75,7 +99,7 @@ namespace DataLayer
         // Ingresar estudiantes
         public void insertStudent(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
-                          string observaciones, int nivelId)
+                          string observaciones, string nivelId)
         {
             SqlCommand query = new SqlCommand("INSERT INTO estudiantes (primer_nombre, segundo_nombre, " +
                                               "primer_apellido, segundo_apellido, telefono, celular, " +
