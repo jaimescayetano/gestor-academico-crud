@@ -12,7 +12,6 @@
     <None Remove="favicon.ico" />
     <None Remove="logo.jpg" />
     <None Remove="reload.png" />
-    <None Remove="resources\reload.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +22,10 @@
     <Resource Include="favicon.ico" />
     <Resource Include="logo.jpg" />
     <Resource Include="reload.png" />
-    <Resource Include="resources\reload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="gradePages\" />
   </ItemGroup>
 
 </Project>

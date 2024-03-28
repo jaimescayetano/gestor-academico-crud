@@ -23,13 +23,13 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
-            frame.Source = new Uri("FormListaEstudiante.xaml", UriKind.Relative);
+            frame.Source = new Uri("studentPages/studentsList.xaml", UriKind.Relative);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             frame.Source = null;
-            frame.Source = new Uri("FormListaEstudiante.xaml", UriKind.Relative);
+            frame.Source = new Uri("studentPages/studentsList.xaml", UriKind.Relative);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -37,6 +37,18 @@ namespace PresentationLayer
             this.Close();
             Login login = new Login();
             login.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            frame.Source = null;
+            frame.Source = new Uri("levelPages/levelsList.xaml", UriKind.Relative);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            frame.Source = null;
+            frame.Source = new Uri("classroomPages/classroomsList.xaml", UriKind.Relative);
         }
     }
 }

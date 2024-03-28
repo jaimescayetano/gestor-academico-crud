@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace LogicLayer
 {
-   
     public class ClassroomModel
     {
         public Connection connection;
-    
-        public ClassroomModel()
+
+        public ClassroomModel() 
         {
             this.connection = Connection.getInstance();
         }
@@ -22,9 +21,14 @@ namespace LogicLayer
             return this.connection.getClassrooms();
         }
 
-        public string deleteClassroom(int id) 
+        public string deleteClassroom(int id)
         {
             return this.connection.deleteClassroom(id);
+        }
+
+        public List<Dictionary<string, string>> getClassroomsOptions()
+        {
+            return connection.getClassroomsOptions();
         }
     }
 }

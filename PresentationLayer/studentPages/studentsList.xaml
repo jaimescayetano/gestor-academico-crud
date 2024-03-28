@@ -1,0 +1,84 @@
+﻿<Page x:Class="PresentationLayer.studentPages.studentsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PresentationLayer.studentPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="studentsList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="90*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="85*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1"
+                   Text="LISTA DE ESTUDIANTES"
+                   FontSize="35"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   FontWeight="Bold" Margin="87,32,0,0" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- buttons -->
+            <Button Grid.Column="1" x:Name="btEditStudent"
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Editar" Click="editStudent" />
+
+            <Button Grid.Column="2" x:Name="btDeleteStudent" 
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Eliminar" Click="removeStudent"/>
+
+            <Button Grid.Column="3" x:Name="btAddStudent" 
+                    Margin="5" 
+                    Background="#FF573482" 
+                    Foreground="White" 
+                    Content="Añadir" Click="addStudent"/>
+        </Grid>
+
+        <!-- student table -->
+        <StackPanel Grid.Row="2">
+            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Primer Nombre" Binding="{Binding primerNombre}"/>
+                    <DataGridTextColumn Header="Segundo Nombre" Binding="{Binding segundoNombre}"/>
+                    <DataGridTextColumn Header="Apellido Paterno" Binding="{Binding primerApellido}"/>
+                    <DataGridTextColumn Header="Apellido Materno" Binding="{Binding segundoApellido}"/>
+                    <DataGridTextColumn Header="Telefono" Binding="{Binding telefono}"/>
+                    <DataGridTextColumn Header="Celular" Binding="{Binding celular}"/>
+                    <DataGridTextColumn Header="Direccion" Binding="{Binding direccion}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding gmail}"/>
+                    <DataGridTextColumn Header="Fecha de nacimiento" Binding="{Binding fechaNacimiento}"/>
+                    <DataGridTextColumn Header="Observaciones" Binding="{Binding observaciones}"/>
+                    <DataGridTextColumn Header="Nivel Academico" Binding="{Binding nivelAcademico}"/>
+                    <DataGridTextColumn Header="Grado y Seccion" Binding="{Binding gradoSeccion}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

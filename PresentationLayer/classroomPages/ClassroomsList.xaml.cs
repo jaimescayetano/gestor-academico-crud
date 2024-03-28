@@ -11,19 +11,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PresentationLayer
+namespace PresentationLayer.classroomPages
 {
     /// <summary>
-    /// Lógica de interacción para ListaAulas.xaml
+    /// Lógica de interacción para ClassroomsList.xaml
     /// </summary>
-    public partial class ListaAulas : Window
+    public partial class classroomsList : Page
     {
         ClassroomModel classroomModel;
 
-        public ListaAulas()
+        public classroomsList()
         {
             InitializeComponent();
             classroomModel = new ClassroomModel();
@@ -39,7 +38,17 @@ namespace PresentationLayer
             }
         }
 
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        private void addClassroom(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editClassroom(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void removeClassroom(object sender, RoutedEventArgs e)
         {
             foreach (ClassroomItem item in dgAulas.SelectedItems)
             {
@@ -56,5 +65,3 @@ namespace PresentationLayer
         public string observaciones { get; set; }
     }
 }
-
-

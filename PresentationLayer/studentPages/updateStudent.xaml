@@ -1,11 +1,11 @@
-﻿<Window x:Class="PresentationLayer.FormNuevoEstudiante"
+﻿<Window x:Class="PresentationLayer.studentPages.updateStudent"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationLayer"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="FormNuevoEstudiante" MinHeight="700" MinWidth="950">
+        xmlns:local="clr-namespace:PresentationLayer.studentPages"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Icon="../favicon.ico"
+        Title="updateStudent" ResizeMode="NoResize" Height="600" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
@@ -20,31 +20,30 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.Column="0" 
-                Margin="20,20,15,10" 
-                Source="/logo.jpg" 
-                Width="100" 
-                Height="100" 
-                Panel.ZIndex="1"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"/>
+           Margin="20,20,15,10" 
+           Source="/logo.jpg" 
+           Width="100" 
+           Height="100" 
+           Panel.ZIndex="1"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="1"
-                Text="NUEVO ESTUDIANTE"
-                FontSize="35"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FontWeight="Bold" 
-                Foreground="#FF573482"/>
+               Text="NUEVO ESTUDIANTE"
+               FontSize="35"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               FontWeight="Bold" 
+               Foreground="#FF573482" Margin="248,0,0,0"/>
         </Grid>
 
-
-        <Grid Grid.Row="1" Margin="50">
+        <Grid Grid.Row="1" Margin="20 10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="15*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -97,82 +96,51 @@
                 <TextBox x:Name="tbDireccion" Margin="0 5" Padding="5"></TextBox>
             </StackPanel>
 
-            <Grid Grid.Column="0" Grid.Row="4" Margin="10 5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Observaciones:" Grid.Row="0"/>
+            <StackPanel Grid.Column="2" Grid.Row="3" Margin="10 5" >
+                <TextBlock Text="Niveles:"/>
+                <ComboBox x:Name="cbNiveles" 
+                      Margin="0 5" 
+                      Padding="5" 
+                      Height="27"
+                      DisplayMemberPath="Value"
+                      SelectedValuePath="Key" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="4" Margin="10 5">
+                <TextBlock Text="Observaciones:"/>
                 <TextBox x:Name="tbObservaciones" 
-                         Margin="0 8" Padding="5" 
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         HorizontalScrollBarVisibility="Disabled"
-                         Grid.Row="1"/>
-            </Grid>
-
-            <Grid Grid.Column="1" Grid.Row="4" Margin="10 5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Nivel Academico (ID):" Grid.Row="0"/>
-
-                <Grid Grid.Row="1" Margin="0 10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30*"/>
-                        <ColumnDefinition Width="70*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBox x:Name="tbIdNivel" 
-                             Margin="0 5" 
-                             Padding="5"
-                             VerticalAlignment="Center"
-                             Grid.Column="0" />
-
-                    <Button x:Name="btnMostrarNiveles"
-                            Margin="10 5" 
-                            Padding="1"
-                            MaxHeight="30"
-                            MaxWidth="250"
-                            
-                            Background="#67488e" 
-                            Foreground="White" 
-                            Content="Mostrar Niveles" 
-                            Click="btnMostrarNiveles_Click"
-                            Grid.Column="1"/>
-                </Grid>
-            </Grid>
-
+                     Margin="0 5" 
+                     Padding="5" 
+                     TextWrapping="Wrap" 
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Disabled" />
+            </StackPanel>
         </Grid>
-
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*"></ColumnDefinition>
                 <ColumnDefinition Width="70*"></ColumnDefinition>
-                <ColumnDefinition Width="15*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Button x:Name="btnVolver" 
-                  Grid.Column="0"
-                  Margin="30 20" 
-                  MaxWidth="500"
-                  Padding="8" 
-                  Background="#FF573482" 
-                  Foreground="White" 
-                  Content="Volver" Click="btnVolver_Click" />
-
+                Grid.Column="0"
+                Margin="30 20" 
+                MaxWidth="500"
+                Padding="8" 
+                Background="#FF573482" 
+                Foreground="White" 
+                Content="Volver" Click="returnWindow" />
 
             <Button x:Name="btnIRegistrarEstudiante" 
-                 Grid.Column="1"
-                 Margin="80 20" 
-                 MaxWidth="500"
-                 Padding="8" 
-                 Background="#FF573482" 
-                 Foreground="White" 
-                 Content="Registrar estudiante" Click="btnIRegistrarEstudiante_Click"/>
+                Grid.Column="1"
+                Margin="80 20" 
+                MaxWidth="500"
+                Padding="8" 
+                Background="#FF573482" 
+                Foreground="White" 
+                Content="Guardar cambios" Click="saveChanges"/>
         </Grid>
     </Grid>
 </Window>
