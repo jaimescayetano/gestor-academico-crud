@@ -1,0 +1,31 @@
+﻿<Window x:Class="PresentationLayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" Icon="/favicon.ico" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <StackPanel Width="200" Background="#FF573482" >
+            <Image Height="100" Width="100" Margin="20 30 20 60" Source="/logo.jpg" />
+            <Button Content="Estudiantes" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
+            <Button Content="Niveles" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            <Button Content="Aulas" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16"/>
+            <Button Content="Cerrar sesión" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_1"/>
+
+            <!-- Agrega más botones según sea necesario -->
+        </StackPanel>
+
+        <!-- Contenedor de la otra ventana -->
+        <Frame x:Name="frame" Grid.Column="1" Padding="4"/>
+    </Grid>
+</Window>

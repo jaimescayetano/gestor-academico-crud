@@ -64,14 +64,49 @@ namespace PresentationLayer
 
         private void btnEditarEstudiante_Click(object sender, RoutedEventArgs e)
         {
-            //FormEditarEstudiante editarEstudiante = new FormEditarEstudiante();
-            //editarEstudiante.Show();
-            //this.Hide();
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                var selectedRow = (dynamic)dgEstudiantes.SelectedItem;
+                int selectedLevelId = int.Parse(selectedRow.Id);
+
+                FormEditarEstudiante editStudentForm = new FormEditarEstudiante(selectedLevelId);
+                editStudentForm.ShowDialog();
+
+                StudentList();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un estudiante");
+            }
+
+            this.Close();
         }
 
         private void btnEliminarEstudiant_Click(object sender, RoutedEventArgs e)
         {
-            //
+            if (dgEstudiantes.SelectedItem != null)
+            {
+                var selectedRow = (dynamic)dgEstudiantes.SelectedItem;
+                int selectedLevelId = int.Parse(selectedRow.Id);
+
+                var result = MessageBox.Show("¿Está seguro de que desea eliminar al estudiante seleccionado?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    StudentModel studentModel = new StudentModel();
+                    studentModel.deleteStudent(selectedLevelId);
+
+                    MessageBox.Show("Estudiante eliminado con éxito.", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                    dgEstudiantes.Items.Clear();
+                    StudentList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un estudiante para eliminar", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
        

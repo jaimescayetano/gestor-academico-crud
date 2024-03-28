@@ -17,16 +17,9 @@ namespace LogicLayer
             this.connection = Connection.getInstance();
         }
 
-        public List<List<string>> getAdmins()
-        {
-            //
-            return this.connection.getAdministrators();
-        }
         public bool ValidateUserCredentials(string gmail, string contraseña)
         {
             return connection.ValidateUser(gmail, contraseña);
         }
-
-
     }
 }

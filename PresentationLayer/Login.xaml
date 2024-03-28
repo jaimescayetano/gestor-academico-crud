@@ -1,14 +1,14 @@
-﻿<Window x:Class="Login.View.Login"
+﻿<Window x:Class="PresentationLayer.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Login.View"
+        xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
         Title="Inicio de sesión" Height="550" Width="900"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -36,32 +36,32 @@
                            FontSize="28"
                            FontWeight="Bold" 
                            Foreground="#FF573482"/>
-                
+
                 <TextBlock x:Name="tbCorreo" 
                            Text="Correo electrónico:"  
                            Margin="60 35 0 0"
                            FontSize="14" 
                            FontWeight="Bold" />
-                
+
                 <TextBox x:Name="txtCorreoElectronico"
                          Margin ="60 20 60 0" 
-                         FontSize="16"
+                         Padding="4"
                          Foreground="Black" 
                          CaretBrush="LightGray" 
-                         BorderBrush="DarkGray"></TextBox>  
-                
+                         BorderBrush="DarkGray"/>
+
                 <TextBlock x:Name="tbContraseña" 
                            Text="Contraseña:"  
                            Margin="60 25 0 0" 
                            FontSize="14" 
                            FontWeight="Bold"/>
                 <PasswordBox x:Name="txtContraseña" 
-                         Margin ="60 20 60 0" 
-                         FontSize="16" 
+                         Margin ="60 20 60 0"
+                         Padding="4" 
                          Foreground="Black" 
                          CaretBrush="LightGray" 
                          BorderBrush="DarkGray"
-                             PasswordChar="*"></PasswordBox>
+                             PasswordChar="*"/>
 
                 <Button x:Name="btnIniciarSesion" 
                         Margin="60 50 60 0" 
@@ -70,13 +70,9 @@
                         Foreground="White" 
                         Panel.ZIndex="0" 
                         Content="Iniciar Sesión" Click="btnIniciarSesion_Click"/>
-                <Button x:Name="btShowExample" Content="Abrir ejemplo" Click="btShowExample_Click"/>
 
             </StackPanel>
         </Border>
-        
-
-
-
     </Grid>
 </Window>
+

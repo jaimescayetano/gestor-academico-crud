@@ -36,20 +36,6 @@ namespace DataLayer
             this.connection.Close();
         }
 
-        // example of select with administrators table
-        public List<List<string>> getAdministrators()
-        {
-            List<List<string>> admins = new List<List<string>>();
-            SqlCommand query = new SqlCommand("SELECT * FROM administradores", this.connection);
-            SqlDataReader data = query.ExecuteReader();
-            while (data.Read())
-            {
-                admins.Add(new List<string>() { data["id"].ToString(), data["usuario"].ToString(), data["gmail"].ToString(), data["contraseña"].ToString() });
-            }
-            data.Close();
-            return admins;
-        }
-
         // validate user password
         public bool ValidateUser(string gmail, string contraseña)
         {
@@ -59,7 +45,6 @@ namespace DataLayer
 
             int count = (int)query.ExecuteScalar();
 
-            // Si count es mayor que 0, significa que se encontró una coincidencia
             return count > 0;
         }
 
@@ -86,6 +71,87 @@ namespace DataLayer
             return levels;
         }
 
+        // get level by Id
+        public List<string> getLevelById(int levelId)
+        {
+            SqlCommand query = new SqlCommand("SELECT * FROM niveles WHERE id = @levelId", this.connection);
+
+            query.Parameters.AddWithValue("@levelId", levelId);
+
+            SqlDataReader data = query.ExecuteReader();
+
+            if (data.Read())
+            {
+                List<string> level = new List<string>() {
+                    data["id"].ToString(),
+                    data["nivel_academico"].ToString(),
+                    data["seccion"].ToString(),
+                    data["grado"].ToString(),
+                    data["tutor"].ToString(),
+                    data["observaciones"].ToString(),
+                    data["aula_id"].ToString()
+        };
+                data.Close();
+                return level;
+            }
+            else
+            {
+                data.Close();
+                return null;
+            }
+        }
+
+        // Ingresar Niveles
+        public void insertLevel(char nivelAcademico, string seccion, int grado, string tutor,
+                          string observaciones, int aulaId)
+        {
+            SqlCommand query = new SqlCommand("INSERT INTO niveles (nivel_academico, seccion, " +
+                                              "grado, tutor, observaciones, aula_id) " +
+                                              "VALUES (@nivelAcademico, @seccion, @grado, @tutor, " +
+                                              "@observaciones, @aulaId)", this.connection);
+
+            query.Parameters.AddWithValue("@nivelAcademico", nivelAcademico);
+            query.Parameters.AddWithValue("@seccion", seccion);
+            query.Parameters.AddWithValue("@grado", grado);
+            query.Parameters.AddWithValue("@tutor", tutor);
+            query.Parameters.AddWithValue("@observaciones", observaciones);
+            query.Parameters.AddWithValue("@aulaId", aulaId);
+
+            // Ejecutar el comando
+            int result = query.ExecuteNonQuery();
+
+        }
+
+        // Actualizar Niveles
+        public void updateLevel(int id, char nivelAcademico, string seccion, int grado, string tutor,
+                        string observaciones, int aulaId)
+        {
+            SqlCommand query = new SqlCommand("UPDATE niveles SET nivel_academico = @nivelAcademico, " +
+                                              "seccion = @seccion, grado = @grado, tutor = @tutor, " +
+                                              "observaciones = @observaciones, aula_id = @aulaId " +
+                                              "WHERE id = @id", this.connection);
+
+            query.Parameters.AddWithValue("@id", id);
+            query.Parameters.AddWithValue("@nivelAcademico", nivelAcademico);
+            query.Parameters.AddWithValue("@seccion", seccion);
+            query.Parameters.AddWithValue("@grado", grado);
+            query.Parameters.AddWithValue("@tutor", tutor);
+            query.Parameters.AddWithValue("@observaciones", observaciones);
+            query.Parameters.AddWithValue("@aulaId", aulaId);
+
+            int result = query.ExecuteNonQuery();
+
+        }
+
+        // Borrar Nivel
+        public void deleteLevel(int id)
+        {
+            SqlCommand query = new SqlCommand("DELETE FROM niveles WHERE id = @id", this.connection);
+            query.Parameters.AddWithValue("@id", id);
+            int result = query.ExecuteNonQuery();
+        }
+
+
         // Ingresar estudiantes
         public void insertStudent(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
@@ -97,7 +163,6 @@ namespace DataLayer
                                               "VALUES (@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, " +
                                               "@telefono, @celular, @direccion, @gmail, @fechaNacimiento, @observaciones, @nivelId)", this.connection);
 
-            // Agregar los parámetros al comando para evitar SQL Injection
             query.Parameters.AddWithValue("@primerNombre", primerNombre);
             query.Parameters.AddWithValue("@segundoNombre", segundoNombre);
             query.Parameters.AddWithValue("@primerApellido", primerApellido);
@@ -110,13 +175,12 @@ namespace DataLayer
             query.Parameters.AddWithValue("@observaciones", observaciones);
             query.Parameters.AddWithValue("@nivelId", nivelId);
 
-            // Ejecutar el comando
             int result = query.ExecuteNonQuery();
 
-            
         }
 
-        // Obtener a loes estudiantes
+
+        // Obtener a los estudiantes
         public List<List<string>> getStudents()
         {
             List<List<string>> levels = new List<List<string>>();
@@ -142,5 +206,82 @@ namespace DataLayer
             data.Close();
             return levels;
         }
+
+        public List<string> getStudentById(int studentId)
+        {
+            SqlCommand query = new SqlCommand("SELECT * FROM estudiantes WHERE id = @studentId", this.connection);
+
+            query.Parameters.AddWithValue("@studentId", studentId);
+
+            SqlDataReader data = query.ExecuteReader();
+
+            if (data.Read())
+            {
+                List<string> level = new List<string>() {
+                    data["id"].ToString(),
+                    data["primer_nombre"].ToString(),
+                    data["segundo_nombre"].ToString(),
+                    data["primer_apellido"].ToString(),
+                    data["segundo_apellido"].ToString(),
+                    data["telefono"].ToString(),
+                    data["celular"].ToString(),
+                    data["direccion"].ToString(),
+                    data["gmail"].ToString(),
+                    data["fecha_nacimiento"].ToString(),
+                    data["observaciones"].ToString(),
+                    data["nivel_id"].ToString()
+            };
+                data.Close();
+                return level;
+            }
+            else
+            {
+                data.Close();
+                return null;
+            }
+        }
+
+        // Actualizar Estudiante
+        public void updateStudent(int id, string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
+                          string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,
+                          string observaciones, int nivelId)
+        {
+            SqlCommand query = new SqlCommand("UPDATE estudiantes SET primer_nombre = @primerNombre, " +
+                                              "segundo_nombre = @segundoNombre, primer_apellido = @primerApellido, segundo_apellido = @segundoApellido, " +
+                                              "telefono = @telefono, celular = @celular, direccion = @direccion, gmail = @gmail, " +
+                                              "fecha_nacimiento = @fechaNacimiento, observaciones = @observaciones, nivel_id = @nivelId " + // Asegúrate de tener un espacio antes de WHERE
+                                              "WHERE id = @id", this.connection);
+
+            query.Parameters.AddWithValue("@id", id);
+            query.Parameters.AddWithValue("@primerNombre", primerNombre);
+            query.Parameters.AddWithValue("@segundoNombre", segundoNombre);
+            query.Parameters.AddWithValue("@primerApellido", primerApellido);
+            query.Parameters.AddWithValue("@segundoApellido", segundoApellido);
+            query.Parameters.AddWithValue("@telefono", telefono);
+            query.Parameters.AddWithValue("@celular", celular);
+            query.Parameters.AddWithValue("@direccion", direccion);
+            query.Parameters.AddWithValue("@gmail", gmail);
+            query.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
+            query.Parameters.AddWithValue("@observaciones", observaciones);
+            query.Parameters.AddWithValue("@nivelId", nivelId);
+
+            int result = query.ExecuteNonQuery();
+        }
+
+        // Borrar Estudiante
+        public void deleteStudent(int id)
+        {
+            SqlCommand query = new SqlCommand("DELETE FROM estudiantes WHERE id = @id", this.connection);
+            query.Parameters.AddWithValue("@id", id);
+            int result = query.ExecuteNonQuery();
+        }
+
+
+
+
+
+
+
+
     }
 }

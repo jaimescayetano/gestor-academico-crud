@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="FormListaEstudiante" Height="700" Width="1100">
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
@@ -65,7 +67,7 @@ Foreground="#FF573482"/>
 
 
         <StackPanel Grid.Row="2">
-            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300">
+            <DataGrid x:Name="dgEstudiantes" Grid.Row="1" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Primer Nombre" Binding="{Binding Primer_Nombre}"/>

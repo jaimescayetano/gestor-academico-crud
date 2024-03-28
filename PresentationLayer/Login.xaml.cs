@@ -1,6 +1,4 @@
-﻿using DataLayer;
-using LogicLayer;
-using PresentationLayer;
+﻿using LogicLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Login.View
+namespace PresentationLayer
 {
-    
     /// <summary>
     /// Lógica de interacción para Login.xaml
     /// </summary>
@@ -31,20 +28,20 @@ namespace Login.View
         }
 
         // button that activates validation 
-        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e) 
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
             string gmail = txtCorreoElectronico.Text;
             string contraseña = txtContraseña.Password;
 
-            if (gmail.Length > 0 && contraseña.Length > 0) 
+            if (gmail.Length > 0 && contraseña.Length > 0)
             {
                 if (adminModel.ValidateUserCredentials(gmail, contraseña))
                 {
                     this.Hide();
                     txtCorreoElectronico.Clear();
                     txtContraseña.Clear();
-                    Form1 form = new Form1();
-                    form.ShowDialog();
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
                 }
                 else
                 {
@@ -52,18 +49,13 @@ namespace Login.View
                     txtCorreoElectronico.Clear();
                     txtContraseña.Clear();
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Ingresar los datos solicitados", "Validación de datos");
                 txtCorreoElectronico.Clear();
                 txtContraseña.Clear();
             }
-        }
-
-        private void btShowExample_Click(object sender, RoutedEventArgs e)
-        {
-            Window1 exampleWindow = new Window1();
-            exampleWindow.Show();
         }
     }
 }
