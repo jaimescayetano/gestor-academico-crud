@@ -71,13 +71,13 @@
         </Grid>
 
         <StackPanel Grid.Row="3">
-            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300" >
+            <DataGrid Grid.Row="1" x:Name="dgPromedios" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="2*"/>
-                    <DataGridTextColumn Header="Estudiante" Binding="{Binding nombreCompleto}" Width="4*"/>
-                    <DataGridTextColumn Header="Tutor" Binding="{Binding nombreTutor}" Width="4*"/>
+                    <DataGridTextColumn Header="Estudiante" Binding="{Binding estudiante}" Width="4*"/>
+                    <DataGridTextColumn Header="Tutor" Binding="{Binding tutor}" Width="4*"/>
                     <DataGridTextColumn Header="Promedio" Binding="{Binding promedio}" Width="4*"/>
-                    <DataGridTextColumn Header="Nivel" Binding="{Binding nivel}" Width="4*"/>
+                    <DataGridTextColumn Header="Nivel" Binding="{Binding nivel_academico}" Width="4*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

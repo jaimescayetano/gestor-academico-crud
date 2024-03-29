@@ -15,5 +15,10 @@ namespace LogicLayer
         {
             this.connection = Connection.getInstance();
         }
+
+        public List<List<string>> getAverages()
+        {
+            return connection.getAverages();
+        }
     }
 }

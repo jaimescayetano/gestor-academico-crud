@@ -36,20 +36,21 @@ namespace DataLayer
         {
             this.connection.Close();
         }
+
         public List<List<string>> getAverages()
         {
             List<List<string>> averages = new List<List<string>>();
-            SqlCommand query = new SqlCommand(@"SELECT 
+            SqlCommand query = new SqlCommand(@"SELECT p.id,
                                         CONCAT(e.primer_nombre, ' ', e.segundo_nombre, ' ',
-                                        e.primer_apellido, ' ', e.segundo_apellido) AS Estudiante,
-                                        n.tutor AS Tutor,
-                                        p.promedio AS Promedio,
+                                        e.primer_apellido, ' ', e.segundo_apellido) AS estudiante,
+                                        n.tutor AS tutor,
+                                        p.promedio AS promedio,
                                         CONCAT(n.grado, n.seccion,
                                                CASE
                                                    WHEN n.nivel_academico = 'P' THEN ' Primaria'
                                                    WHEN n.nivel_academico = 'S' THEN ' Secundaria'
                                                    WHEN n.nivel_academico = 'I' THEN ' Inicial'
-                                               END) AS Nivel_Academico
+                                               END) AS nivel_academico
                                         FROM promedios p
                                         INNER JOIN estudiantes e ON p.estudiante_id = e.id
                                         INNER JOIN niveles n ON p.nivel_id = n.id", this.connection);
@@ -58,20 +59,17 @@ namespace DataLayer
             while (data.Read())
             {
                 averages.Add(new List<string>()
-                {   
-                    data["Estudiante"].ToString(),
-                    data["Tutor"].ToString(),
-                    data["Promedio"].ToString(),
-                    data["Nivel_Academico"].ToString()
+                {
+                    data["id"].ToString(),
+                    data["estudiante"].ToString(),
+                    data["tutor"].ToString(),
+                    data["promedio"].ToString(),
+                    data["nivel_academico"].ToString()
                 });
             }
             data.Close();
             return averages;
         }
-
-
-
-
 
         public string insertClassroom(int numero, int capacidad, string observaciones) 
         {
