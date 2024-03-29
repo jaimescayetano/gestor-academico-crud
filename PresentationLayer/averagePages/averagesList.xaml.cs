@@ -48,7 +48,7 @@ namespace PresentationLayer.averagePages
                     estudiante = average[1],
                     tutor = average[2],
                     promedio = double.Parse(average[3]),
-                    nivel_academico = average[4]
+                    nivelAcademico = average[4]
                 };
                 dgPromedios.Items.Add(row);
             }
@@ -72,10 +72,10 @@ namespace PresentationLayer.averagePages
 
     public class AverageItem
     {
-        public int id;
-        public string estudiante;
-        public string tutor;
-        public double promedio;
-        public string nivel_academico;
+        public int id { get; set; }
+        public string estudiante { get; set; }
+        public string tutor { get; set; }
+        public double promedio { get; set; }
+        public string nivelAcademico { get; set; }
     }
 }

@@ -77,7 +77,7 @@
                     <DataGridTextColumn Header="Estudiante" Binding="{Binding estudiante}" Width="4*"/>
                     <DataGridTextColumn Header="Tutor" Binding="{Binding tutor}" Width="4*"/>
                     <DataGridTextColumn Header="Promedio" Binding="{Binding promedio}" Width="4*"/>
-                    <DataGridTextColumn Header="Nivel" Binding="{Binding nivel_academico}" Width="4*"/>
+                    <DataGridTextColumn Header="Nivel" Binding="{Binding nivelAcademico}" Width="4*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

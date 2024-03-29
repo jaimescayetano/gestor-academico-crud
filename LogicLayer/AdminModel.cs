@@ -13,7 +13,6 @@ namespace LogicLayer
 
         public AdminModel()
         {
-            // obtaining connection instance
             this.connection = Connection.getInstance();
         }
 
