@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using static System.Collections.Specialized.BitVector32;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace DataLayer
 {
     public class Connection
     {
         private static Connection _instance;
-        private string hostname = "Data Source=DESKTOP-HN5MUAI\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
+        private string hostname = "Data Source=DESKTOP-JOPHT0L\\SQLEXPRESS;Initial Catalog=colegio; Integrated Security= True";
         private SqlConnection connection = new SqlConnection();
 
         // singleton pattern
@@ -35,6 +36,42 @@ namespace DataLayer
         {
             this.connection.Close();
         }
+        public List<List<string>> getAverages()
+        {
+            List<List<string>> averages = new List<List<string>>();
+            SqlCommand query = new SqlCommand(@"SELECT 
+                                        CONCAT(e.primer_nombre, ' ', e.segundo_nombre, ' ',
+                                        e.primer_apellido, ' ', e.segundo_apellido) AS Estudiante,
+                                        n.tutor AS Tutor,
+                                        p.promedio AS Promedio,
+                                        CONCAT(n.grado, n.seccion,
+                                               CASE
+                                                   WHEN n.nivel_academico = 'P' THEN ' Primaria'
+                                                   WHEN n.nivel_academico = 'S' THEN ' Secundaria'
+                                                   WHEN n.nivel_academico = 'I' THEN ' Inicial'
+                                               END) AS Nivel_Academico
+                                        FROM promedios p
+                                        INNER JOIN estudiantes e ON p.estudiante_id = e.id
+                                        INNER JOIN niveles n ON p.nivel_id = n.id", this.connection);
+
+            SqlDataReader data = query.ExecuteReader();
+            while (data.Read())
+            {
+                averages.Add(new List<string>()
+                {   
+                    data["Estudiante"].ToString(),
+                    data["Tutor"].ToString(),
+                    data["Promedio"].ToString(),
+                    data["Nivel_Academico"].ToString()
+                });
+            }
+            data.Close();
+            return averages;
+        }
+
+
+
+
 
         public string insertClassroom(int numero, int capacidad, string observaciones) 
         {
@@ -436,5 +473,9 @@ namespace DataLayer
             query.Parameters.AddWithValue("@id", id);
             int result = query.ExecuteNonQuery();
         }
+
+
+
+
     }
 }
