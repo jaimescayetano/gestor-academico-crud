@@ -1,0 +1,85 @@
+﻿<Page x:Class="PresentationLayer.averagePages.averagesList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PresentationLayer.averagePages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="averagesList">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="90*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                FontSize="35"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Foreground="#67488e" 
+                FontWeight="Bold" ><Run Language="es-es" Text="PROMEDIOS"/></TextBlock>
+        </Grid>
+        
+        <!-- Selects -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="cbEstudiante" Grid.Column="0" Margin="5"  />
+            <TextBox x:Name="tbNivel" Grid.Column="1" Margin="5" IsReadOnly="True"/>
+            <TextBox x:Name="tbNota" Grid.Column="2" Margin="5" IsReadOnly="True"/>
+        </Grid>
+        
+        <!-- Botones -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" x:Name="btEditPromedio"
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Editar" Click="editPromedio" />
+
+            <Button Grid.Column="2" x:Name="btDeletePromedio" 
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Eliminar" Click="removePromedio"/>
+
+            <Button Grid.Column="3" x:Name="btAddPromedio" 
+                    Margin="5" 
+                    Background="#FF573482" 
+                    Foreground="White" 
+                    Content="Añadir" Click="addPromedio"/>
+        </Grid>
+
+        <StackPanel Grid.Row="3">
+            <DataGrid Grid.Row="1" x:Name="dgEstudiantes" AutoGenerateColumns="False" Margin="15 10 15 0" Height="300" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="2*"/>
+                    <DataGridTextColumn Header="Estudiante" Binding="{Binding nombreCompleto}" Width="4*"/>
+                    <DataGridTextColumn Header="Tutor" Binding="{Binding nombreTutor}" Width="4*"/>
+                    <DataGridTextColumn Header="Promedio" Binding="{Binding promedio}" Width="4*"/>
+                    <DataGridTextColumn Header="Nivel" Binding="{Binding nivel}" Width="4*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Page>

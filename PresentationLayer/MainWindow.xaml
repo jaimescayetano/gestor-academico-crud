@@ -20,8 +20,8 @@
             <Button Content="Estudiantes" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
             <Button Content="Niveles" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click_2"/>
             <Button Content="Aulas" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_3"/>
+            <Button Content="Promedios" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_4"/>
             <Button Content="Cerrar sesión" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_1"/>
-
             <!-- Agrega más botones según sea necesario -->
         </StackPanel>
 

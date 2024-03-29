@@ -24,8 +24,4 @@
     <Resource Include="reload.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="gradePages\" />
-  </ItemGroup>
-
 </Project>

@@ -50,5 +50,11 @@ namespace PresentationLayer
             frame.Source = null;
             frame.Source = new Uri("classroomPages/classroomsList.xaml", UriKind.Relative);
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            frame.Source = null;
+            frame.Source = new Uri("averagePages/averagesList.xaml", UriKind.Relative);
+        }
     }
 }
