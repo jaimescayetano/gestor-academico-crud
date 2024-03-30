@@ -21,6 +21,10 @@ namespace LogicLayer
             return this.connection.getStudents();
         }
 
+        public List<Dictionary<string, string>> getStudentsOptions()
+        {
+            return this.connection.getStudentsOptions();
+        }
 
         public void insertStudent(string primerNombre, string segundoNombre, string primerApellido, string segundoApellido,
                           string telefono, string celular, string direccion, string gmail, DateTime fechaNacimiento,

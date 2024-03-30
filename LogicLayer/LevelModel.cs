@@ -17,6 +17,11 @@ namespace LogicLayer
             this.connection = Connection.getInstance();
         }
 
+        public List<string> getLevelByStudentId(int id)
+        {
+            return this.connection.getLevelByStudent(id);
+        }
+
         // method to obatin levels
         public List<List<string>> getLevels()
         {

@@ -16,6 +16,16 @@ namespace LogicLayer
             this.connection = Connection.getInstance();
         }
 
+        public string deleteAverage(int id)
+        {
+            return this.connection.deleteAverage(id);
+        }
+
+        public string addAverage(int levelId, int studentId, double average)
+        {
+            return this.connection.insertAverage(levelId, studentId, average);
+        }
+
         public List<List<string>> getAverages()
         {
             return connection.getAverages();

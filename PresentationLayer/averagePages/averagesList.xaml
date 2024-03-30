@@ -34,9 +34,10 @@
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="cbEstudiante" Grid.Column="0" Margin="5"  />
-            <TextBox x:Name="tbNivel" Grid.Column="1" Margin="5" IsReadOnly="True"/>
-            <TextBox x:Name="tbNota" Grid.Column="2" Margin="5" IsReadOnly="True"/>
+            <ComboBox x:Name="cbEstudiante" Grid.Column="0" Margin="5"  DisplayMemberPath="Value" SelectedValuePath="Key" Padding="5"
+                      SelectionChanged="showLevel"/>
+            <TextBox x:Name="tbNivel" Grid.Column="1" Margin="5" Padding="5" IsReadOnly="True"/>
+            <TextBox x:Name="tbNota" Grid.Column="2" Margin="5" Padding="5" />
         </Grid>
         
         <!-- Botones -->
@@ -51,19 +52,13 @@
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" x:Name="btEditPromedio"
-                    Margin="5"
-                    Background="#67488e" 
-                    Foreground="White" 
-                    Content="Editar" Click="editPromedio" />
-
             <Button Grid.Column="2" x:Name="btDeletePromedio" 
                     Margin="5"
                     Background="#67488e" 
                     Foreground="White" 
                     Content="Eliminar" Click="removePromedio"/>
 
-            <Button Grid.Column="3" x:Name="btAddPromedio" 
+            <Button Grid.Column="1" x:Name="btAddPromedio" 
                     Margin="5" 
                     Background="#FF573482" 
                     Foreground="White" 

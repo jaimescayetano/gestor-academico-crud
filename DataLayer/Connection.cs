@@ -93,6 +93,21 @@ namespace DataLayer
             return levels;
         }
 
+        // read options -> students
+        public List<Dictionary<string, string>> getStudentsOptions()
+        {
+            List<Dictionary<string, string>> studentsOptions = new List<Dictionary<string, string>>();
+            SqlCommand query = new SqlCommand(@"SELECT id, CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) 
+                                                AS estudiante FROM estudiantes;", this.connection);
+            SqlDataReader data = query.ExecuteReader();
+            while (data.Read())
+            {
+                studentsOptions.Add(new Dictionary<string, string>() { { data["id"].ToString(), data["estudiante"].ToString() } });
+            }
+            data.Close();
+            return studentsOptions;
+        }
+
         // read by id -> students
         public List<string> getStudentById(int studentId)
         {
@@ -205,6 +220,34 @@ namespace DataLayer
             }
             data.Close();
             return levels;
+        }
+
+        // read by student -> level
+        public List<string> getLevelByStudent(int id)
+        {
+            SqlCommand query = new SqlCommand(@"SELECT n.id AS id, CONCAT(grado, seccion, ' - ',
+                                                CASE
+                                                    WHEN nivel_academico = 'P' THEN ' Primaria'
+                                                    WHEN nivel_academico = 'I' THEN ' Inicial'
+                                                    WHEN nivel_academico = 'S' THEN ' Secundaria'
+                                                    ELSE ' No encontrado' 
+                                                END) AS nivel_academico
+                                                FROM estudiantes e
+                                                INNER JOIN niveles n ON e.nivel_id = n.id
+                                                WHERE e.id = @id;", this.connection);
+            query.Parameters.AddWithValue("@id", id);
+            SqlDataReader data = query.ExecuteReader();
+            if (data.Read())
+            {
+                List<string> level = new List<string>() { data["id"].ToString(), data["nivel_academico"].ToString() };
+                data.Close();
+                return level;
+            } else
+            {
+                data.Close();
+                return null;
+            }
+            
         }
 
         // read options -> leves
@@ -336,7 +379,7 @@ namespace DataLayer
                     data["numero"].ToString(),
                     data["capacidad"].ToString(),
                     data["observaciones"].ToString()
-            };
+                };
                 data.Close();
                 return classroom;
             }
@@ -400,6 +443,25 @@ namespace DataLayer
         }
 
         // create -> average
+        public string insertAverage(int levelId, int studentId, double average)
+        {
+            try
+            {
+                SqlCommand query = new SqlCommand("INSERT INTO promedios (promedio, estudiante_id, nivel_id) VALUES (@promedio, @estudiante_id, @nivel_id)", this.connection);
+                query.Parameters.AddWithValue("@promedio", average);
+                query.Parameters.AddWithValue("@estudiante_id", studentId);
+                query.Parameters.AddWithValue("@nivel_id", levelId);
+                int result = query.ExecuteNonQuery();
+                if (result == 1)
+                    return "El promedio fue registrado correctamente.";
+                else
+                    return "No se pudo registrar el promedio, intentelo nuevamente.";
+            }
+            catch (Exception e)
+            {
+                return $"Ocurrió un error inesperado: {e.Message}";
+            }
+        }
 
         // read -> average
         public List<List<string>> getAverages()
@@ -434,6 +496,22 @@ namespace DataLayer
             }
             data.Close();
             return averages;
+        }
+
+        // delete -> average
+        public string deleteAverage(int id)
+        {
+            try
+            {
+                SqlCommand query = new SqlCommand("DELETE FROM promedios WHERE id = @id", this.connection);
+                query.Parameters.AddWithValue("@id", id);
+                int rowsAffected = query.ExecuteNonQuery();
+                return rowsAffected > 0 ? "El promedio se eliminó correctamente" : "No se eliminó el promedio";
+            }
+            catch (Exception e)
+            {
+                return $"Ocurrió un error inesperado: {e.Message}";
+            }
         }
 
         // validate -> administrator
