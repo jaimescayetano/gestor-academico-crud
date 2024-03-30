@@ -109,6 +109,7 @@
             <StackPanel Grid.Column="0" Grid.Row="4" Margin="10 5">
                 <TextBlock Text="Observaciones:"/>
                 <TextBox x:Name="tbObservaciones" 
+                     MaxHeight="30"
                      Margin="0 5" 
                      Padding="5" 
                      TextWrapping="Wrap" 

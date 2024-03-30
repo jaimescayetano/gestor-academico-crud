@@ -55,11 +55,12 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Observaciones:" Grid.Row="0"/>
                 <TextBox x:Name="tbObservaciones" 
-             Margin="0,8,0,-23" Padding="5" 
-             TextWrapping="Wrap"
-             VerticalScrollBarVisibility="Auto"
-             HorizontalScrollBarVisibility="Disabled"
-             Grid.Row="1"/>
+                     MaxHeight="45"
+                     Margin="0,8,0,-23" Padding="5" 
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Disabled"
+                     Grid.Row="1"/> 
             </Grid>
 
             <Grid Grid.Column="0" Grid.Row="3" Margin="10 5">
