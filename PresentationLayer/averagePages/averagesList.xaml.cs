@@ -120,8 +120,7 @@ namespace PresentationLayer.averagePages
 
         private void generateReport(object sender, RoutedEventArgs e)
         {
-            report report = new report();
-            report.Show();
+
         }
     }
 

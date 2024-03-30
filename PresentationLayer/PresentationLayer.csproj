@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CrystalReports.WPF.Viewer" Version="13.0.4003" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LogicLayer\LogicLayer.csproj" />
   </ItemGroup>
 
