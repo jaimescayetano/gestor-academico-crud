@@ -52,6 +52,12 @@
                 <ColumnDefinition ></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <Button Grid.Column="3" x:Name="btGenerateReport" 
+                    Margin="5"
+                    Background="#67488e" 
+                    Foreground="White" 
+                    Content="Reporte" Click="generateReport"/>
+
             <Button Grid.Column="2" x:Name="btDeletePromedio" 
                     Margin="5"
                     Background="#67488e" 

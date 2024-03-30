@@ -117,6 +117,12 @@ namespace PresentationLayer.averagePages
             if (average < 0 || average > 20) return false;
             return true;
         }
+
+        private void generateReport(object sender, RoutedEventArgs e)
+        {
+            report report = new report();
+            report.Show();
+        }
     }
 
     public class AverageItem
