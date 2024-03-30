@@ -26,7 +26,7 @@
                 Foreground="#67488e" 
                 FontWeight="Bold" ><Run Language="es-es" Text="PROMEDIOS"/></TextBlock>
         </Grid>
-        
+
         <!-- Selects -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -39,7 +39,7 @@
             <TextBox x:Name="tbNivel" Grid.Column="1" Margin="5" Padding="5" IsReadOnly="True"/>
             <TextBox x:Name="tbNota" Grid.Column="2" Margin="5" Padding="5" />
         </Grid>
-        
+
         <!-- Botones -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -53,10 +53,10 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="3" x:Name="btGenerateReport" 
-                    Margin="5"
+                    Margin="5" 
                     Background="#67488e" 
                     Foreground="White" 
-                    Content="Reporte" Click="generateReport"/>
+                    Content="Reporte" Click="generateReport" Height="23" VerticalAlignment="Top"/>
 
             <Button Grid.Column="2" x:Name="btDeletePromedio" 
                     Margin="5"

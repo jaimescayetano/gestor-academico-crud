@@ -18,6 +18,10 @@ using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using System.Reflection.Metadata;
+using QuestPDF.Previewer;
 
 namespace PresentationLayer.averagePages
 {
@@ -120,7 +124,15 @@ namespace PresentationLayer.averagePages
 
         private void generateReport(object sender, RoutedEventArgs e)
         {
-
+            /*
+           QuestPDF.Fluent.Document.Create(document =>
+            {
+                document.Page(page =>
+                {
+                    page.Header().Height(100).Background(QuestPDF.Helpers.Colors.Blue.Medium);
+                });
+            }).ShowInPreviewer();
+            */
         }
     }
 
