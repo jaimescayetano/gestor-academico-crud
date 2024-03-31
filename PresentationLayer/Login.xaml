@@ -8,7 +8,43 @@
         Title="Inicio de sesión" Height="550" Width="900"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Icon="/favicon.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#67488e" />
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFF" />
 
+        <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryColor}"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Padding" Value="12 6 12 6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MaxHeight" Value="40"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="btnBorder" CornerRadius="5"
+                            Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="True"
+                            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentPresenter" Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          RecognizesAccessKey="True" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -61,16 +97,13 @@
                          Foreground="Black" 
                          CaretBrush="LightGray" 
                          BorderBrush="DarkGray"
-                             PasswordChar="*"/>
+                         PasswordChar="*"/>
 
                 <Button x:Name="btnIniciarSesion" 
+                        Style="{DynamicResource PrimaryButtonStyle}"
                         Margin="60 50 60 0" 
-                        Padding="8" 
-                        Background="#FF573482" 
-                        Foreground="White" 
                         Panel.ZIndex="0" 
                         Content="Iniciar Sesión" Click="btnIniciarSesion_Click"/>
-
             </StackPanel>
         </Border>
     </Grid>

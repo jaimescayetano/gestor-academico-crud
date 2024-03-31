@@ -8,6 +8,33 @@
         Title="MainWindow" Height="600" Width="1200" 
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Icon="/favicon.ico" >
+    <Window.Resources>
+        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                                BorderThickness="0"
+                                Padding="4,2" 
+                                CornerRadius="3" 
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Trigger para mostrar el borde inferior solo cuando hay hover -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderThickness" Value="0,0,0,1" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -17,12 +44,22 @@
         <!-- Sidebar -->
         <StackPanel Width="200" Background="#FF573482" >
             <Image Height="100" Width="100" Margin="20 30 20 60" Source="/logo.jpg" />
-            <Button Content="Estudiantes" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
-            <Button Content="Niveles" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click_2"/>
-            <Button Content="Aulas" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_3"/>
-            <Button Content="Promedios" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_4"/>
-            <Button Content="Cerrar sesión" Margin="10" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_1"/>
-            <!-- Agrega más botones según sea necesario -->
+            <Button Content="Estudiantes" Margin="10"
+                    Style="{StaticResource MyButtonStyle}" 
+                    Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
+            <Button Content="Niveles" Margin="10" 
+                    Style="{StaticResource MyButtonStyle}" 
+                    Foreground="White" FontSize="16" FontWeight="Bold" Click="Button_Click_2"/>
+            <Button Content="Aulas" Margin="10" 
+                    Style="{StaticResource MyButtonStyle}"
+                    Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_3"/>
+            <Button Content="Promedios" Margin="10" 
+                    Style="{StaticResource MyButtonStyle}"
+                    Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_4"/>
+            <Button Content="Cerrar sesión" Margin="10" 
+                    Padding="3"
+                    Style="{StaticResource MyButtonStyle}"
+                    Foreground="White" FontWeight="Bold" FontSize="16" Click="Button_Click_1"/>
         </StackPanel>
 
         <!-- Contenedor de la otra ventana -->

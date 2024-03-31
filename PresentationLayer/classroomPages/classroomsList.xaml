@@ -6,24 +6,59 @@
         xmlns:local="clr-namespace:PresentationLayer.classroomPages"
         mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800"
         Title="ClassroomsList">
+    <Page.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#67488e" />
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFF" />
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryColor}"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Padding" Value="12 6 12 6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MaxHeight" Value="40"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="btnBorder" CornerRadius="5"
+            Background="{TemplateBinding Background}"
+            Width="{TemplateBinding Width}"
+            MaxHeight="{TemplateBinding MaxHeight}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            SnapsToDevicePixels="True"
+            Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentPresenter" Focusable="False"
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Margin="{TemplateBinding Padding}"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                          RecognizesAccessKey="True" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*"></ColumnDefinition>
-                <ColumnDefinition Width="85*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1"
+            <TextBlock
                 FontSize="35"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 FontWeight="Bold" 
-                Foreground="#FF573482" Margin="224,0,0,0"><Run Language="es-es" Text="AULAS"/></TextBlock>
+                Foreground="#FF573482"><Run Language="es-es" Text="AULAS"/></TextBlock>
         </Grid>
 
         <Grid Grid.Row="1" Margin="20">
@@ -37,7 +72,7 @@
                 <ColumnDefinition Width="5*"></ColumnDefinition>
                 <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <StackPanel Grid.Column="0" Grid.Row="0" Margin="10 5">
                 <TextBlock Text="Número:"></TextBlock>
                 <TextBox x:Name="tbNumero" Margin="0 5" Padding="5"></TextBox>
@@ -60,7 +95,7 @@
                      TextWrapping="Wrap"
                      VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Disabled"
-                     Grid.Row="1"/> 
+                     Grid.Row="1"/>
             </Grid>
 
             <Grid Grid.Column="0" Grid.Row="3" Margin="10 5">
@@ -70,25 +105,19 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnGuardar"
-                        Margin="7" 
+                        Style="{DynamicResource PrimaryButtonStyle}"
+                        Margin="5" 
                         Padding="1"
-                        MaxHeight="30"
-                        Background="#67488e" 
-                        Foreground="White" 
                         Content="Guardar" Grid.Column="0" Click="addClassroom" />
                 <Button x:Name="btnEditar"
-                        Margin="7" 
+                        Style="{DynamicResource PrimaryButtonStyle}"
+                        Margin="5" 
                         Padding="1"
-                        MaxHeight="30"
-                        Background="#67488e" 
-                        Foreground="White" 
                         Content="Editar" Grid.Column="1" Click="editClassroom"/>
                 <Button x:Name="btnEliminar"
-                        Margin="7" 
+                        Style="{DynamicResource PrimaryButtonStyle}"
+                        Margin="5" 
                         Padding="1"
-                        MaxHeight="30"
-                        Background="#67488e" 
-                        Foreground="White" 
                         Content="Eliminar" Grid.Column="2" Click="removeClassroom" />
             </Grid>
 

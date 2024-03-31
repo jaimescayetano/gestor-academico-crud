@@ -6,6 +6,42 @@
         xmlns:local="clr-namespace:PresentationLayer.levelPages"
         mc:Ignorable="d"  WindowStartupLocation="CenterScreen" Icon="../favicon.ico"
         Title="updateStudent" ResizeMode="NoResize" Height="600" Width="1200">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#67488e" />
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFF" />
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryColor}"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Padding" Value="12 6 12 6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MaxHeight" Value="40"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="btnBorder" CornerRadius="5"
+                Background="{TemplateBinding Background}"
+                Width="{TemplateBinding Width}"
+                MaxHeight="{TemplateBinding MaxHeight}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                SnapsToDevicePixels="True"
+                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentPresenter" Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              RecognizesAccessKey="True" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
@@ -98,22 +134,18 @@
             </Grid.ColumnDefinitions>
 
             <Button x:Name="btnVolver" 
-                  Grid.Column="0"
-                  Margin="30 20" 
-                  MaxWidth="500"
-                  Padding="8" 
-                  Background="#FF573482" 
-                  Foreground="White" 
-                  Content="Volver" Click="returnWindow" />
+                    Style="{DynamicResource PrimaryButtonStyle}"
+                    Grid.Column="0"
+                    Margin="30 20" 
+                    MaxWidth="500"
+                    Content="Volver" Click="returnWindow" />
 
             <Button x:Name="btnRegistrarNivel" 
-                 Grid.Column="1"
-                 Margin="80 20" 
-                 MaxWidth="500"
-                 Padding="8" 
-                 Background="#FF573482" 
-                 Foreground="White" 
-                 Content="Guardar cambios" Click="saveChanges"/>
+                    Style="{DynamicResource PrimaryButtonStyle}"
+                    Grid.Column="1"
+                    Margin="80 20" 
+                    MaxWidth="500"
+                    Content="Guardar cambios" Click="saveChanges"/>
         </Grid>
     </Grid>
 </Window>

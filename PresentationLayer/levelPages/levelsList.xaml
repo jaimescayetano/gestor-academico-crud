@@ -7,27 +7,61 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="levelsList">
+    <Page.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#67488e" />
+        <SolidColorBrush x:Key="SecondaryColor" Color="#FFFFFF" />
 
+        <Style x:Key="PrimaryButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{DynamicResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryColor}"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Padding" Value="12 6 12 6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="MaxHeight" Value="40"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="btnBorder" CornerRadius="5"
+                        Background="{TemplateBinding Background}"
+                        Width="{TemplateBinding Width}"
+                        MaxHeight="{TemplateBinding MaxHeight}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="True"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter x:Name="ContentPresenter" Focusable="False"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Margin="{TemplateBinding Padding}"
+                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                      RecognizesAccessKey="True" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"></RowDefinition>
-            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="11*"></RowDefinition>
             <RowDefinition Height="90*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="15*"></ColumnDefinition>
-                <ColumnDefinition Width="85*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1"
+            <TextBlock
                        Text="LISTA DE NIVELES"
                        FontSize="35"
                        VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
+                       HorizontalAlignment="Center"
                        Foreground="#FF573482"
-                       FontWeight="Bold" Margin="134,0,0,0" />
+                       FontWeight="Bold" />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -43,22 +77,19 @@
 
             <!-- buttons -->
             <Button Grid.Column="1" x:Name="btEditLevel"
-            Margin="5"
-            Background="#67488e" 
-            Foreground="White" 
-            Content="Editar" Click="editLevel" />
+                    Style="{DynamicResource PrimaryButtonStyle}"
+                    Margin="2"
+                    Content="Editar" Click="editLevel" />
 
             <Button Grid.Column="2" x:Name="btDeleteLevel" 
-            Margin="5"
-            Background="#67488e" 
-            Foreground="White" 
-            Content="Eliminar" Click="removeLevel"/>
+                    Style="{DynamicResource PrimaryButtonStyle}"
+                    Margin="2"
+                    Content="Eliminar" Click="removeLevel"/>
 
             <Button Grid.Column="3" x:Name="btAddLevel" 
-            Margin="5" 
-            Background="#FF573482" 
-            Foreground="White" 
-            Content="Añadir" Click="addLevel"/>
+                    Style="{DynamicResource PrimaryButtonStyle}"
+                    Margin="2" 
+                    Content="Añadir" Click="addLevel"/>
         </Grid>
 
         <!-- levels table -->
