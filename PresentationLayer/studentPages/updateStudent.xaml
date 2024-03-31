@@ -65,7 +65,7 @@
            HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="1"
-               Text="NUEVO ESTUDIANTE"
+               Text="EDITAR ESTUDIANTE"
                FontSize="35"
                VerticalAlignment="Top"
                HorizontalAlignment="Left"
